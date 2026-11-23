@@ -127,10 +127,12 @@ python -m pytest tests/ -v
 
 ## Contributors
 
-- **Likitha C (`@LikithaC17`)**: Core project author, first contributor to push the project implementation, system architect, Phases 3–7 implementation, ML/DL pipelines, model evaluation, XAI integration, and Flask application development.
-- **Shreenisha (`@Shreenisha-S30`)**: Collection of both project datasets and preprocessing of `dataset_cleaned.zip`.
-- **Tejas (`@thejuthejaskg-lab`)**: Preprocessing of `Palm_preprocessed.zip`.
-- **Srivatsa (`@SrivatsaKulkarni1`)**
+| GitHub account | Credit |
+|---|---|
+| [LikithaC17](https://github.com/LikithaC17) | Core project author, first contributor to push the project implementation, system architect, Phases 3–7 implementation (Phase 3: Classical ML & feature extraction; Phase 4: CNN & ResNet-18; Phase 5: Model evaluation & metrics; Phase 6: SHAP & Grad-CAM XAI; Phase 7: Flask web application), ML/DL pipelines, model evaluation, XAI integration, and Flask application development. |
+| [Shreenisha-S30](https://github.com/Shreenisha-S30) | Collection of both datasets and preprocessing of `dataset_cleaned.zip`. |
+| [thejuthejaskg-lab](https://github.com/thejuthejaskg-lab) | Preprocessing of `Palm_preprocessed.zip`. |
+| [SrivatsaKulkarni1](https://github.com/SrivatsaKulkarni1) | |
 
 ---
 
