@@ -127,12 +127,11 @@ python -m pytest tests/ -v
 
 ## Contributors
 
-| GitHub account | Credit |
-|---|---|
-| [LikithaC17](https://github.com/LikithaC17) | Core project author, first contributor to push the project implementation, system architect, Phases 3–7 implementation (Phase 3: Classical ML & feature extraction; Phase 4: CNN & ResNet-18; Phase 5: Model evaluation & metrics; Phase 6: SHAP & Grad-CAM XAI; Phase 7: Flask web application), ML/DL pipelines, model evaluation, XAI integration, and Flask application development. |
-| [Shreenisha-S30](https://github.com/Shreenisha-S30) | Collection of both datasets and preprocessing of `dataset_cleaned.zip`. |
-| [thejuthejaskg-lab](https://github.com/thejuthejaskg-lab) | Preprocessing of `Palm_preprocessed.zip`. |
-| [SrivatsaKulkarni1](https://github.com/SrivatsaKulkarni1) | |
+| Contributor | GitHub Profile | Primary Contributions |
+|---|---|---|
+| **Likitha C** | [@LikithaC17](https://github.com/LikithaC17) | **Lead Developer & System Architect**<br/>- End-to-end design and execution of Phases 3-7.<br/>- Handcrafted feature extraction (151 features) & classical ML pipelines.<br/>- Deep learning modeling (Custom CNN & ResNet-18).<br/>- Model evaluation and performance benchmarking ($N=1,117$).<br/>- Explainable AI implementation (SHAP, Grad-CAM, LayerCAM, Guided Backprop).<br/>- Flask web application development and automated testing suites. |
+| **Shreenisha S** | [@Shreenisha-S30](https://github.com/Shreenisha-S30) | **Dataset Contributor**<br/>- Contributed `dataset_cleaned.zip` image collection. |
+| **Thejas K G** | [@thejuthejaskg-lab](https://github.com/thejuthejaskg-lab) | **Dataset Contributor**<br/>- Contributed `Palm_preprocessed.zip` image collection. |
 
 ---
 
