@@ -1,0 +1,3 @@
+model_name,modality,architecture,pretrained,best_epoch,accuracy,balanced_accuracy,precision_anemia,recall_sensitivity,specificity,f1_anemia,f1_macro,roc_auc,pr_auc,true_positives,false_positives,true_negatives,false_negatives,checkpoint_path
+Custom CNN,Eye Conjunctiva,4-Block CNN (32-64-128-256) + BatchNorm + Dropout,False,6,0.5995,0.6773,0.2513,0.7903,0.5642,0.3813,0.5426,0.7616,0.4414,49,146,189,13,c:\Users\LIKITHA\OneDrive\Desktop\Anemia Detection\results\phase4\checkpoints\best_custom_cnn.pth
+ResNet-18,Eye Conjunctiva,"Torchvision ResNet-18 (Frozen Conv1-Layer3, Trainable Layer4 & FC)",True,5,0.8035,0.6404,0.3788,0.4032,0.8776,0.3906,0.6368,0.7507,0.363,25,41,294,37,c:\Users\LIKITHA\OneDrive\Desktop\Anemia Detection\results\phase4\checkpoints\best_resnet18.pth

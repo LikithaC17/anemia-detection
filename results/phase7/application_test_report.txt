@@ -1,0 +1,51 @@
+================================================================================
+PHASE 7 AUTOMATED APPLICATION TEST REPORT
+Project: AI-Based Anemia Detection Using Image Processing, ML, DL, and XAI
+Generated: 2026-11-08 15:27:30
+Execution Environment: Windows 11, Python 3.14.0, pytest-9.1.1
+Overall Result: 17/17 PASSED (100% Success Rate)
+================================================================================
+
+1. TEST SUITE EXECUTION SUMMARY
+--------------------------------------------------------------------------------
+Command: python -m pytest tests/test_phase7_web_application.py -v
+
+Test Case Name                                                          Status   Duration
+----------------------------------------------------------------------- -------- --------
+test_flask_app_startup_and_config                                       PASSED   0.05s
+test_home_page_response                                                 PASSED   0.12s
+test_prediction_page_response                                           PASSED   0.08s
+test_dashboard_page_response                                            PASSED   0.15s
+test_model_comparison_page_response                                     PASSED   0.09s
+test_explainable_ai_page_response                                       PASSED   0.11s
+test_about_page_response                                                PASSED   0.08s
+test_invalid_file_rejection_no_file                                     PASSED   0.06s
+test_unsupported_format_rejection                                       PASSED   0.07s
+test_corrupt_image_rejection                                            PASSED   0.08s
+test_unsupported_modality_or_model                                      PASSED   0.09s
+test_deep_learning_custom_cnn_inference_and_cam                         PASSED   2.45s
+test_deep_learning_resnet18_inference_and_cam                           PASSED   3.12s
+test_classical_ml_random_forest_and_shap                                PASSED   4.85s
+test_classical_ml_svm_and_shap                                          PASSED   7.15s
+test_classical_ml_palm_modality                                         PASSED   3.10s
+test_error_handling_404                                                 PASSED   0.06s
+----------------------------------------------------------------------- -------- --------
+Total Suite Execution Time: 21.73s
+Total Passed: 17 / 17 (0 Failed, 0 Skipped)
+
+2. FULL SYSTEM REGRESSION AUDIT (ALL PHASES)
+--------------------------------------------------------------------------------
+Command: python -m pytest tests/ -v
+Total Tests Collected: 37
+- Phase 4 Deep Learning Tests: 5/5 PASSED
+- Phase 5 Model Evaluation Tests: 3/3 PASSED
+- Phase 6 Optimization Tests: 7/7 PASSED
+- Phase 6 XAI Integrity Tests: 5/5 PASSED
+- Phase 7 Web Application Tests: 17/17 PASSED
+Total Passed: 37 / 37 (100% System Regression Integrity)
+
+3. MEDICAL INTEGRITY CONFIRMATION
+--------------------------------------------------------------------------------
+All UI rendering assertions verified the presence of the mandatory research
+prototype disclaimer across all view templates.
+================================================================================

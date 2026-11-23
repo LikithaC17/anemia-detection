@@ -1,0 +1,100 @@
+================================================================================
+PHASE 7 PRE-INTEGRATION VERIFICATION REPORT
+Project: AI-Based Anemia Detection Using Image Processing, ML, DL, and XAI
+Generated: 2026-11-08 15:18:00
+Status: VERIFIED & READY FOR INTEGRATION
+================================================================================
+
+1. TRAINED MODELS AVAILABILITY AUDIT
+--------------------------------------------------------------------------------
+A. Classical Machine Learning Models (15 Pipeline Artifacts):
+   - Eye Conjunctiva:
+     * SVM (RBF Kernel, C=1.0, probability=True): models/classical_ml/svm_eye_conjunctiva.joblib (1619.7 KB) - VERIFIED
+     * Random Forest (n_estimators=100, class_weight='balanced'): models/classical_ml/random_forest_eye_conjunctiva.joblib (5057.9 KB) - VERIFIED
+     * Logistic Regression (l2, balanced): models/classical_ml/logistic_regression_eye_conjunctiva.joblib (6.0 KB) - VERIFIED
+     * KNN (k=15, distance-weighted): models/classical_ml/knn_eye_conjunctiva.joblib (1098.5 KB) - VERIFIED
+     * Decision Tree (criterion='gini', max_depth=10): models/classical_ml/decision_tree_eye_conjunctiva.joblib (4.6 KB) - VERIFIED
+   - Palmar Pallor:
+     * SVM (RBF Kernel, probability=True): models/classical_ml/svm_palmar_pallor.joblib (1950.7 KB) - VERIFIED
+     * Random Forest: models/classical_ml/random_forest_palmar_pallor.joblib (5070.1 KB) - VERIFIED
+     * Logistic Regression: models/classical_ml/logistic_regression_palmar_pallor.joblib (6.0 KB) - VERIFIED
+     * KNN: models/classical_ml/knn_palmar_pallor.joblib (1363.3 KB) - VERIFIED
+     * Decision Tree: models/classical_ml/decision_tree_palmar_pallor.joblib (5.2 KB) - VERIFIED
+   - Nail Beds:
+     * SVM (RBF Kernel, probability=True): models/classical_ml/svm_nail_beds.joblib (375.0 KB) - VERIFIED
+     * Random Forest: models/classical_ml/random_forest_nail_beds.joblib (1098.4 KB) - VERIFIED
+     * Logistic Regression: models/classical_ml/logistic_regression_nail_beds.joblib (6.0 KB) - VERIFIED
+     * KNN: models/classical_ml/knn_nail_beds.joblib (622.2 KB) - VERIFIED
+     * Decision Tree: models/classical_ml/decision_tree_nail_beds.joblib (2.4 KB) - VERIFIED
+
+B. Deep Learning Models (2 Architectures):
+   - Custom CNN (4 Conv Blocks, MaxPool, Dropout, AdaptiveAvgPool):
+     * Checkpoint: models/deep_learning/cnn/best_custom_cnn_eye.pth (4973.3 KB) - VERIFIED
+     * Target Modality: Eye Conjunctiva
+     * Input Tensor: (1, 3, 224, 224)
+   - ResNet-18 (Transfer Learning, Frozen Backbone, Custom Head):
+     * Checkpoint: models/deep_learning/resnet18/best_resnet18_eye.pth (109338.0 KB) - VERIFIED
+     * Target Modality: Eye Conjunctiva
+     * Input Tensor: (1, 3, 224, 224)
+
+2. PREPROCESSING PIPELINE SPECIFICATIONS
+--------------------------------------------------------------------------------
+A. Classical ML:
+   - Module: src/feature_extraction/
+   - Input: RGB image (PIL Image -> uint8 array)
+   - Features: 151 handcrafted features (Color: RGB/HSV/LAB statistics, ratios, histograms; Texture: GLCM, LBP)
+   - Feature List: results/phase3/features/feature_names.json (151 names)
+   - Normalization: Embedded StandardScaler inside each scikit-learn Pipeline
+   - Status: VERIFIED (100% deterministic feature name match)
+
+B. Deep Learning:
+   - Module: src/deep_learning/transforms.py
+   - Pipeline: Resize(224, 224) -> ToTensor() -> Normalize(mean=[0.485, 0.456, 0.406], std=[0.229, 0.224, 0.225])
+   - Status: VERIFIED
+
+3. DATASET MODALITIES & CLASS DEFINITIONS
+--------------------------------------------------------------------------------
+- Verified Modalities:
+  * Eye Conjunctiva: Supported by Classical ML (5 models) and Deep Learning (2 models).
+  * Palmar Pallor: Supported by Classical ML (5 models). Deep Learning unavailable.
+  * Nail Beds: Supported by Classical ML (5 models). Deep Learning unavailable.
+- Binary Target Labels:
+  * 0: Non_Anemia
+  * 1: Anemia
+- Prediction Probability Support:
+  * All 17 models support predict_proba / softmax probability output.
+
+4. EXPLAINABILITY METHODS AVAILABILITY
+--------------------------------------------------------------------------------
+A. Classical ML (Eye Conjunctiva):
+   - Random Forest: TreeExplainer (Individual waterfall & global bar) - COMPLETE
+   - Logistic Regression: LinearExplainer - COMPLETE
+   - Decision Tree: TreeExplainer - COMPLETE
+   - SVM (RBF): KernelExplainer with bounded background (n=30) and budget (nsamples=100) - COMPLETE (Phase 6 Opt)
+   - KNN: KernelExplainer with bounded background (n=30) and budget (nsamples=100) - COMPLETE (Phase 6 Opt)
+
+B. Deep Learning (Eye Conjunctiva):
+   - Custom CNN: Standard Grad-CAM, LayerCAM, Guided Backpropagation, Guided Grad-CAM - COMPLETE
+   - ResNet-18: Standard Grad-CAM, LayerCAM, Guided Backpropagation, Guided Grad-CAM - COMPLETE
+
+5. DEPENDENCIES & ENVIRONMENT AUDIT
+--------------------------------------------------------------------------------
+- Python: 3.14.0 (Windows)
+- Flask: 3.0.0
+- PyTorch: 2.14.1+cpu
+- Torchvision: 0.29.2+cpu
+- scikit-learn: 1.8.0
+- OpenCV: 5.0.0
+- Pillow: 12.0.0
+- SHAP: 0.54.1
+- Joblib: 1.5.3
+- Matplotlib: 3.11.2
+- Pandas: 2.3.3
+- NumPy: 2.4.0
+
+6. RESEARCH INTEGRITY NOTICE
+--------------------------------------------------------------------------------
+This is an academic research prototype. Predictions and visualizations must not be
+presented as clinically confirmed diagnoses. Laboratory CBC hemoglobin testing
+remains the clinical standard.
+================================================================================

@@ -1,0 +1,42 @@
+================================================================================
+KNN SHAP OPTIMIZATION REPORT (EYE CONJUNCTIVA)
+================================================================================
+1. PROBLEM STATEMENT:
+   In initial Phase 6 execution, SHAP for KNN was blocked due to excessive runtime and minority
+   class sensitivity collapse. Computing Kernel SHAP over unconstrained feature permutations
+   for non-parametric distance-weighted neighbors created an extreme bottleneck.
+
+2. MODEL CONFIGURATION AUDIT:
+   - Pipeline: StandardScaler -> KNeighborsClassifier(n_neighbors=15, weights='distance', metric='minkowski')
+   - Distance Metric: Minkowski (p=2, Euclidean distance in standardized feature space).
+
+3. OPTIMIZATION STRATEGY IMPLEMENTED:
+   - Explainer: shap.KernelExplainer wrapped around predict_proba(x)[:, 1].
+   - Background Sampling: Representative cohort of 30 training samples.
+   - Evaluation Budget: Controlled budget of nsamples=100 evaluations per test instance.
+
+4. EMPIRICAL RUNTIME & EFFICIENCY:
+   - Total Execution Time: 1.09 seconds.
+   - Runtime Per Instance: 0.137 seconds/sample.
+   - Output Shape: [8, 151].
+
+5. TOP GLOBAL PREDICTIVE FEATURES (KNN):
+   01. erythema_index_mean
+   02. hsv_hist_v_bin2
+   03. rgb_mean_g
+   04. glcm_contrast_d3_std
+   05. lbp_bin_2
+
+6. ARTIFACTS GENERATED:
+   - results/phase6/optimization/shap/knn/shap_bar_knn.png
+   - results/phase6/optimization/shap/knn/shap_beeswarm_knn.png
+   - results/phase6/optimization/shap/knn/knn_global_feature_importance.csv
+   - results/phase6/optimization/shap/knn/knn_individual_explanations.csv
+   - results/phase6/optimization/shap/knn/individual/waterfall_knn_sample_*.png
+================================================================================
+
+7. ACADEMIC & MEDICAL RESEARCH INTEGRITY DISCLAIMER:
+   Explainability methods show how a trained model responds to input features.
+   They do not establish medical causality, confirm anemia, or demonstrate clinical validity.
+   Laboratory hemoglobin testing and professional medical evaluation remain necessary.
+================================================================================

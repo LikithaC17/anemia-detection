@@ -1,0 +1,46 @@
+{
+  "SVM": {
+    "model_name": "Support Vector Machine (SVM)",
+    "best_params": {
+      "svm__C": 10.0,
+      "svm__gamma": "scale",
+      "svm__kernel": "rbf"
+    },
+    "best_cv_roc_auc": 0.7633399140541999
+  },
+  "Random Forest": {
+    "model_name": "Random Forest",
+    "best_params": {
+      "max_depth": 10,
+      "max_features": "sqrt",
+      "min_samples_split": 5,
+      "n_estimators": 200
+    },
+    "best_cv_roc_auc": 0.816068376068376
+  },
+  "Logistic Regression": {
+    "model_name": "Logistic Regression",
+    "best_params": {
+      "lr__C": 0.01,
+      "lr__solver": "lbfgs"
+    },
+    "best_cv_roc_auc": 0.797645053359339
+  },
+  "KNN": {
+    "model_name": "K-Nearest Neighbors (KNN)",
+    "best_params": {
+      "knn__n_neighbors": 15,
+      "knn__weights": "distance"
+    },
+    "best_cv_roc_auc": 0.6648238269666841
+  },
+  "Decision Tree": {
+    "model_name": "Decision Tree",
+    "best_params": {
+      "criterion": "entropy",
+      "max_depth": 3,
+      "min_samples_split": 2
+    },
+    "best_cv_roc_auc": 0.6986591186591187
+  }
+}

@@ -1,0 +1,18 @@
+model_id,model_name,model_type,modality,checkpoint_path,preprocessing_pipeline,probability_supported,xai_supported,xai_methods,integration_status
+resnet18,Pretrained ResNet-18,Deep Learning,Eye Conjunctiva,models/deep_learning/resnet18/best_resnet18_eye.pth,Resize(224x224) + ImageNet Norm,True,True,"Grad-CAM, LayerCAM, Guided Backprop, Guided Grad-CAM",COMPLETE
+custom_cnn,Custom 4-Block CNN,Deep Learning,Eye Conjunctiva,models/deep_learning/cnn/best_custom_cnn_eye.pth,Resize(224x224) + ImageNet Norm,True,True,"Grad-CAM, LayerCAM, Guided Backprop, Guided Grad-CAM",COMPLETE
+svm,Support Vector Machine (RBF),Classical ML,Eye Conjunctiva,models/classical_ml/svm_eye_conjunctiva.joblib,151 Handcrafted Features + StandardScaler,True,True,"Kernel SHAP (Bounded Sampling, n_bg=30)",COMPLETE
+random_forest,Random Forest,Classical ML,Eye Conjunctiva,models/classical_ml/random_forest_eye_conjunctiva.joblib,151 Handcrafted Features + StandardScaler,True,True,Tree SHAP (Exact Polynomial),COMPLETE
+logistic_regression,Logistic Regression,Classical ML,Eye Conjunctiva,models/classical_ml/logistic_regression_eye_conjunctiva.joblib,151 Handcrafted Features + StandardScaler,True,True,Linear SHAP (Analytical Log-Odds),COMPLETE
+knn,K-Nearest Neighbors (k=15),Classical ML,Eye Conjunctiva,models/classical_ml/knn_eye_conjunctiva.joblib,151 Handcrafted Features + StandardScaler,True,True,"Kernel SHAP (Bounded Sampling, n_bg=30)",COMPLETE
+decision_tree,Decision Tree,Classical ML,Eye Conjunctiva,models/classical_ml/decision_tree_eye_conjunctiva.joblib,151 Handcrafted Features + StandardScaler,True,True,Tree SHAP (Exact Polynomial),COMPLETE
+svm,Support Vector Machine (RBF),Classical ML,Palmar Pallor,models/classical_ml/svm_palmar_pallor.joblib,151 Handcrafted Features + StandardScaler,True,False,None (Eye Background Calibrated Only),COMPLETE
+random_forest,Random Forest,Classical ML,Palmar Pallor,models/classical_ml/random_forest_palmar_pallor.joblib,151 Handcrafted Features + StandardScaler,True,False,None (Eye Background Calibrated Only),COMPLETE
+logistic_regression,Logistic Regression,Classical ML,Palmar Pallor,models/classical_ml/logistic_regression_palmar_pallor.joblib,151 Handcrafted Features + StandardScaler,True,False,None (Eye Background Calibrated Only),COMPLETE
+knn,K-Nearest Neighbors (k=15),Classical ML,Palmar Pallor,models/classical_ml/knn_palmar_pallor.joblib,151 Handcrafted Features + StandardScaler,True,False,None (Eye Background Calibrated Only),COMPLETE
+decision_tree,Decision Tree,Classical ML,Palmar Pallor,models/classical_ml/decision_tree_palmar_pallor.joblib,151 Handcrafted Features + StandardScaler,True,False,None (Eye Background Calibrated Only),COMPLETE
+svm,Support Vector Machine (RBF),Classical ML,Nail Beds,models/classical_ml/svm_nail_beds.joblib,151 Handcrafted Features + StandardScaler,True,False,None (Eye Background Calibrated Only),COMPLETE
+random_forest,Random Forest,Classical ML,Nail Beds,models/classical_ml/random_forest_nail_beds.joblib,151 Handcrafted Features + StandardScaler,True,False,None (Eye Background Calibrated Only),COMPLETE
+logistic_regression,Logistic Regression,Classical ML,Nail Beds,models/classical_ml/logistic_regression_nail_beds.joblib,151 Handcrafted Features + StandardScaler,True,False,None (Eye Background Calibrated Only),COMPLETE
+knn,K-Nearest Neighbors (k=15),Classical ML,Nail Beds,models/classical_ml/knn_nail_beds.joblib,151 Handcrafted Features + StandardScaler,True,False,None (Eye Background Calibrated Only),COMPLETE
+decision_tree,Decision Tree,Classical ML,Nail Beds,models/classical_ml/decision_tree_nail_beds.joblib,151 Handcrafted Features + StandardScaler,True,False,None (Eye Background Calibrated Only),COMPLETE

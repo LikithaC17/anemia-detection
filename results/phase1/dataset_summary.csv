@@ -1,0 +1,3 @@
+Dataset,Total Files Discovered,Valid Images,Corrupted Images,Internal Exact Duplicates,Distinct SHA-256 Hashes,Identified Modalities,Class Labels,Identified Distinct Subjects,Formats,Color Modes,Min Dimensions (WxH),Max Dimensions (WxH),Median Dimensions (WxH),Total File Size (MB)
+Palm_preprocessed,2818,2818,0,85,2733,Palm,"Anemia, Non_Anemia",1434,JPEG,RGB,224x224,224x224,224x224,21.91
+dataset_cleaned,4559,4559,0,0,4559,"Eye, Nail Beds, Palm","Anemia, Non_Anemia",1391,JPEG,RGB,512x512,512x512,512x512,129.13

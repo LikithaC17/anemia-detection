@@ -1,0 +1,11 @@
+task,model,status,method,output_location
+SHAP,Random Forest (Eye),COMPLETE,TreeExplainer,results/phase6/shap/
+SHAP,Logistic Regression (Eye),COMPLETE,LinearExplainer,results/phase6/shap/
+SHAP,Decision Tree (Eye),COMPLETE,TreeExplainer,results/phase6/shap/
+SHAP,SVM (Eye),BLOCKED,KernelExplainer,Excluded (KernelExplainer O(N*M) prohibitive on 151 features without added clinical value)
+SHAP,KNN (Eye),BLOCKED,KernelExplainer,"Excluded (Sensitivity collapsed to 5.0% in Phase 5, not selected)"
+Grad-CAM,Custom CNN (Eye),COMPLETE,Hook-based Grad-CAM (block4.0),results/phase6/gradcam/custom_cnn/
+Grad-CAM,Pretrained ResNet-18 (Eye),COMPLETE,Hook-based Grad-CAM (layer4.1.conv2),results/phase6/gradcam/resnet18/
+Individual explanations,Selected Eligible Models,COMPLETE,"Multi-category sampling (TP, TN, FP, FN, Borderline)",results/phase6/shap/individual_explanations/ & gradcam/
+Comparison,Compatible Models,COMPLETE,Cross-Paradigm ML vs DL Synthesis,results/phase6/comparison/
+Final report,Phase 6,COMPLETE,Comprehensive Academic Synthesis,results/phase6/phase6_final_report.txt

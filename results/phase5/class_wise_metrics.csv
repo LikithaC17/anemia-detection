@@ -1,0 +1,35 @@
+model_name,modality,model_type,class_name,precision,recall,f1_score,support
+SVM,Eye Conjunctiva,Classical ML,Non_Anemia,0.9076,0.6975,0.7888,324
+SVM,Eye Conjunctiva,Classical ML,Anemia,0.2741,0.6167,0.3795,60
+Random Forest,Eye Conjunctiva,Classical ML,Non_Anemia,0.8526,1.0,0.9205,324
+Random Forest,Eye Conjunctiva,Classical ML,Anemia,1.0,0.0667,0.125,60
+Logistic Regression,Eye Conjunctiva,Classical ML,Non_Anemia,0.9238,0.6358,0.7532,324
+Logistic Regression,Eye Conjunctiva,Classical ML,Anemia,0.2671,0.7167,0.3891,60
+KNN,Eye Conjunctiva,Classical ML,Non_Anemia,0.8492,0.9907,0.9145,324
+KNN,Eye Conjunctiva,Classical ML,Anemia,0.5,0.05,0.0909,60
+Decision Tree,Eye Conjunctiva,Classical ML,Non_Anemia,0.878,0.4444,0.5902,324
+Decision Tree,Eye Conjunctiva,Classical ML,Anemia,0.1818,0.6667,0.2857,60
+SVM,Palmar Pallor,Classical ML,Non_Anemia,0.9359,0.7518,0.8338,427
+SVM,Palmar Pallor,Classical ML,Anemia,0.2933,0.6667,0.4074,66
+Random Forest,Palmar Pallor,Classical ML,Non_Anemia,0.8696,0.9836,0.9231,427
+Random Forest,Palmar Pallor,Classical ML,Anemia,0.3,0.0455,0.0789,66
+Logistic Regression,Palmar Pallor,Classical ML,Non_Anemia,0.9412,0.7119,0.8107,427
+Logistic Regression,Palmar Pallor,Classical ML,Anemia,0.2765,0.7121,0.3983,66
+KNN,Palmar Pallor,Classical ML,Non_Anemia,0.8716,0.9859,0.9253,427
+KNN,Palmar Pallor,Classical ML,Anemia,0.4,0.0606,0.1053,66
+Decision Tree,Palmar Pallor,Classical ML,Non_Anemia,0.8944,0.6347,0.7425,427
+Decision Tree,Palmar Pallor,Classical ML,Anemia,0.1789,0.5152,0.2656,66
+SVM,Nail Beds,Classical ML,Non_Anemia,0.9664,0.9914,0.9787,232
+SVM,Nail Beds,Classical ML,Anemia,0.0,0.0,0.0,8
+Random Forest,Nail Beds,Classical ML,Non_Anemia,0.9667,1.0,0.9831,232
+Random Forest,Nail Beds,Classical ML,Anemia,0.0,0.0,0.0,8
+Logistic Regression,Nail Beds,Classical ML,Non_Anemia,0.9721,0.75,0.8467,232
+Logistic Regression,Nail Beds,Classical ML,Anemia,0.0492,0.375,0.087,8
+KNN,Nail Beds,Classical ML,Non_Anemia,0.9667,1.0,0.9831,232
+KNN,Nail Beds,Classical ML,Anemia,0.0,0.0,0.0,8
+Decision Tree,Nail Beds,Classical ML,Non_Anemia,0.9627,0.6681,0.7888,232
+Decision Tree,Nail Beds,Classical ML,Anemia,0.0253,0.25,0.046,8
+Custom CNN,Eye Conjunctiva,Deep Learning,Non_Anemia,0.9227,0.5154,0.6614,324
+Custom CNN,Eye Conjunctiva,Deep Learning,Anemia,0.2266,0.7667,0.3498,60
+ResNet-18,Eye Conjunctiva,Deep Learning,Non_Anemia,0.8831,0.8395,0.8608,324
+ResNet-18,Eye Conjunctiva,Deep Learning,Anemia,0.3158,0.4,0.3529,60

@@ -1,0 +1,189 @@
+{% extends "base.html" %}
+
+{% block title %}Model Evaluation Dashboard - Anemia Detection AI{% endblock %}
+
+{% block content %}
+<div class="page-header">
+  <h2>Model Evaluation Dashboard</h2>
+  <p>Comprehensive independent test set evaluation across all 17 trained models and 3 anatomical modalities (Phases 3–5 verified metrics).</p>
+</div>
+
+<!-- KPI Cards -->
+<div class="grid-4" style="margin-bottom: 2rem;">
+  <div class="card" style="border-left: 4px solid var(--primary); padding: 1.25rem;">
+    <span style="font-size: 0.78rem; text-transform: uppercase; font-weight: 700; color: var(--slate-500);">Evaluated Models</span>
+    <h3 style="font-size: 1.8rem; font-weight: 800; color: var(--dark); margin: 0.25rem 0;">17</h3>
+    <small style="font-size: 0.75rem; color: var(--slate-500);">15 Classical ML + 2 Deep Learning</small>
+  </div>
+  <div class="card" style="border-left: 4px solid var(--secondary); padding: 1.25rem;">
+    <span style="font-size: 0.78rem; text-transform: uppercase; font-weight: 700; color: var(--slate-500);">Modalities Tested</span>
+    <h3 style="font-size: 1.8rem; font-weight: 800; color: var(--dark); margin: 0.25rem 0;">3</h3>
+    <small style="font-size: 0.75rem; color: var(--slate-500);">Eye Conjunctiva, Palm, Nail Beds</small>
+  </div>
+  <div class="card" style="border-left: 4px solid #6366f1; padding: 1.25rem;">
+    <span style="font-size: 0.78rem; text-transform: uppercase; font-weight: 700; color: var(--slate-500);">Top Balanced Accuracy</span>
+    <h3 style="font-size: 1.8rem; font-weight: 800; color: var(--dark); margin: 0.25rem 0;">71.20%</h3>
+    <small style="font-size: 0.75rem; color: var(--slate-500);">Logistic Regression (Palmar Pallor)</small>
+  </div>
+  <div class="card" style="border-left: 4px solid var(--warning); padding: 1.25rem;">
+    <span style="font-size: 0.78rem; text-transform: uppercase; font-weight: 700; color: var(--slate-500);">Deep Learning Accuracy</span>
+    <h3 style="font-size: 1.8rem; font-weight: 800; color: var(--dark); margin: 0.25rem 0;">77.08%</h3>
+    <small style="font-size: 0.75rem; color: var(--slate-500);">Pretrained ResNet-18 (Eye)</small>
+  </div>
+</div>
+
+<!-- 17-Model Verified Performance Table -->
+<div class="card" style="margin-bottom: 2.5rem;">
+  <div class="card-header">
+    <h3 class="card-title">Verified Final Test Set Evaluation (N=1,117 Partition)</h3>
+    <div style="display: flex; gap: 0.5rem;">
+      <button class="btn btn-secondary filter-btn active" data-filter="all" style="padding: 0.25rem 0.65rem; font-size: 0.78rem;">All</button>
+      <button class="btn btn-secondary filter-btn" data-filter="eye" style="padding: 0.25rem 0.65rem; font-size: 0.78rem;">Eye</button>
+      <button class="btn btn-secondary filter-btn" data-filter="palm" style="padding: 0.25rem 0.65rem; font-size: 0.78rem;">Palm</button>
+      <button class="btn btn-secondary filter-btn" data-filter="nail" style="padding: 0.25rem 0.65rem; font-size: 0.78rem;">Nail Beds</button>
+    </div>
+  </div>
+
+  <div class="table-responsive">
+    <table class="data-table" id="metrics-table">
+      <thead>
+        <tr>
+          <th>Model Name</th>
+          <th>Type</th>
+          <th>Modality</th>
+          <th>Accuracy</th>
+          <th>Balanced Acc</th>
+          <th>Precision</th>
+          <th>Recall / Sens</th>
+          <th>Specificity</th>
+          <th>F1-Score</th>
+          <th>ROC-AUC</th>
+          <th>MCC</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for row in test_metrics %}
+        <tr class="model-row" data-modality="{% if 'Eye' in row.modality %}eye{% elif 'Palm' in row.modality %}palm{% else %}nail{% endif %}">
+          <td><strong>{{ row.model_name }}</strong></td>
+          <td><span class="badge {% if row.model_type == 'Deep Learning' %}badge-primary{% else %}badge-secondary{% endif %}">{{ row.model_type }}</span></td>
+          <td>{{ row.modality }}</td>
+          <td>{{ "%.2f"|format(row.accuracy * 100) }}%</td>
+          <td><strong style="color: var(--primary);">{{ "%.2f"|format(row.balanced_accuracy * 100) }}%</strong></td>
+          <td>{{ "%.2f"|format(row.precision * 100) }}%</td>
+          <td>{{ "%.2f"|format(row.recall_sensitivity * 100) }}%</td>
+          <td>{{ "%.2f"|format(row.specificity * 100) }}%</td>
+          <td>{{ "%.4f"|format(row.f1_score) }}</td>
+          <td>{{ "%.4f"|format(row.roc_auc) }}</td>
+          <td>{{ "%.4f"|format(row.mcc) }}</td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
+  <p style="font-size: 0.75rem; color: var(--slate-500); margin-top: 0.75rem;">
+    *All metrics were independently evaluated on the isolated Phase 2 test split under patient clustering. Balanced Accuracy accounts for severe class imbalance.
+  </p>
+</div>
+
+<!-- Comparison Charts Grid -->
+<div class="grid-2" style="margin-bottom: 2.5rem;">
+  <div class="card">
+    <div class="card-header">
+      <h3 class="card-title">Comprehensive Model Comparison</h3>
+      <span class="badge badge-primary">Phase 5</span>
+    </div>
+    <img src="{{ url_for('static', filename='images/charts/master_performance_comparison.png') }}" alt="Master Performance Comparison" style="width: 100%; border-radius: 6px;">
+  </div>
+
+  <div class="card">
+    <div class="card-header">
+      <h3 class="card-title">Deep Learning Training & Validation Dynamics</h3>
+      <span class="badge badge-primary">Phase 4</span>
+    </div>
+    <img src="{{ url_for('static', filename='images/charts/training_curves.png') }}" alt="Training Curves" style="width: 100%; border-radius: 6px;">
+  </div>
+</div>
+
+<!-- ROC Curves & Balanced Accuracy -->
+<div class="grid-2" style="margin-bottom: 2.5rem;">
+  <div class="card">
+    <div class="card-header">
+      <h3 class="card-title">ROC Curves (Eye Conjunctiva)</h3>
+      <span class="badge badge-secondary">Discrimination</span>
+    </div>
+    <img src="{{ url_for('static', filename='images/charts/roc_curves_eye_conjunctiva.png') }}" alt="Eye ROC Curves" style="width: 100%; border-radius: 6px;">
+  </div>
+
+  <div class="card">
+    <div class="card-header">
+      <h3 class="card-title">Balanced Accuracy Across Modalities</h3>
+      <span class="badge badge-secondary">Robustness</span>
+    </div>
+    <img src="{{ url_for('static', filename='images/charts/balanced_accuracy_comparison.png') }}" alt="Balanced Accuracy" style="width: 100%; border-radius: 6px;">
+  </div>
+</div>
+
+<!-- Interactive Confusion Matrix Viewer -->
+<div class="card">
+  <div class="card-header">
+    <h3 class="card-title">Interactive Confusion Matrix Inspector</h3>
+    <span class="badge badge-secondary">Test Set Partition</span>
+  </div>
+  <div style="display: flex; gap: 1rem; align-items: center; margin-bottom: 1.25rem; flex-wrap: wrap;">
+    <label for="cm-selector" style="font-size: 0.88rem; font-weight: 600; color: var(--slate-700);">Select Model to View Confusion Matrix:</label>
+    <select id="cm-selector" class="form-select" style="max-width: 380px;">
+      <option value="cm_eye_conjunctiva_resnet18.png">ResNet-18 (Eye Conjunctiva)</option>
+      <option value="cm_eye_conjunctiva_custom_cnn.png">Custom CNN (Eye Conjunctiva)</option>
+      <option value="cm_eye_conjunctiva_svm.png">SVM (Eye Conjunctiva)</option>
+      <option value="cm_eye_conjunctiva_logistic_regression.png">Logistic Regression (Eye Conjunctiva)</option>
+      <option value="cm_eye_conjunctiva_random_forest.png">Random Forest (Eye Conjunctiva)</option>
+      <option value="cm_eye_conjunctiva_knn.png">KNN (Eye Conjunctiva)</option>
+      <option value="cm_eye_conjunctiva_decision_tree.png">Decision Tree (Eye Conjunctiva)</option>
+      <option value="cm_palmar_pallor_svm.png">SVM (Palmar Pallor)</option>
+      <option value="cm_palmar_pallor_logistic_regression.png">Logistic Regression (Palmar Pallor)</option>
+      <option value="cm_palmar_pallor_random_forest.png">Random Forest (Palmar Pallor)</option>
+      <option value="cm_palmar_pallor_knn.png">KNN (Palmar Pallor)</option>
+      <option value="cm_palmar_pallor_decision_tree.png">Decision Tree (Palmar Pallor)</option>
+      <option value="cm_nail_beds_svm.png">SVM (Nail Beds)</option>
+      <option value="cm_nail_beds_logistic_regression.png">Logistic Regression (Nail Beds)</option>
+      <option value="cm_nail_beds_random_forest.png">Random Forest (Nail Beds)</option>
+    </select>
+  </div>
+  <div style="text-align: center;">
+    <img id="cm-display-img" src="{{ url_for('static', filename='images/confusion_matrices/cm_eye_conjunctiva_resnet18.png') }}" alt="Confusion Matrix" style="max-height: 420px; max-width: 100%; border-radius: 8px; border: 1px solid var(--slate-300);">
+  </div>
+</div>
+{% endblock %}
+
+{% block scripts %}
+<script>
+  // Filter table by modality
+  const filterBtns = document.querySelectorAll('.filter-btn');
+  const rows = document.querySelectorAll('.model-row');
+
+  filterBtns.forEach(btn => {
+    btn.addEventListener('click', () => {
+      filterBtns.forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      const filter = btn.dataset.filter;
+
+      rows.forEach(r => {
+        if (filter === 'all' || r.dataset.modality === filter) {
+          r.style.display = '';
+        } else {
+          r.style.display = 'none';
+        }
+      });
+    });
+  });
+
+  // Switch Confusion Matrix
+  const cmSelector = document.getElementById('cm-selector');
+  const cmImg = document.getElementById('cm-display-img');
+  if (cmSelector && cmImg) {
+    cmSelector.addEventListener('change', () => {
+      cmImg.src = "/static/images/confusion_matrices/" + cmSelector.value;
+    });
+  }
+</script>
+{% endblock %}

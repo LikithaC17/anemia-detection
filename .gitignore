@@ -1,0 +1,56 @@
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Distribution / packaging
+build/
+dist/
+*.egg-info/
+
+# Unit test / coverage reports
+.pytest_cache/
+.coverage
+htmlcov/
+
+# Virtual Environments
+.env
+.venv
+env/
+venv/
+ENV/
+
+# Jupyter Notebook checkpoints
+.ipynb_checkpoints
+
+# IDEs & Editors
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# Operating System files
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# Datasets (Archives and Extracted directories)
+datasets/
+*.zip
+*.tar.gz
+*.tgz
+*.rar
+dataset_cleaned/
+Palm_preprocessed/
+
+# Large Model Checkpoints (>100MB, exceeded GitHub limits)
+*resnet18*.pth
+models/deep_learning/resnet18/best_resnet18_eye.pth
+results/phase4/checkpoints/best_resnet18.pth
+
+# Temporary Uploads & Generated Visualizations
+uploads/*
+!uploads/.gitkeep
+static/generated/*
+!static/generated/.gitkeep

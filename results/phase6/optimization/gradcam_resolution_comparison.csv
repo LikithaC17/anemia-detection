@@ -1,0 +1,10 @@
+model_name,target_layer,method,feature_map_dimensions,raw_spatial_resolution,display_resolution,interpolation,spatial_detail_level,clinical_interpretability
+Custom CNN,block4.0 (Final Conv),Grad-CAM,28 x 28 x 256,28 x 28,224 x 224,Bilinear,Coarse anatomical region localization,Highlights general mucosal region
+Custom CNN,block4.0 (Final Conv),LayerCAM,28 x 28 x 256,28 x 28,224 x 224,Bilinear,Fine-grained element-wise spatial localization,Preserves sharp vascular contrast
+Custom CNN,block3.0 (Intermediate),LayerCAM (Intermediate),56 x 56 x 128,56 x 56,224 x 224,Bilinear,High spatial resolution (2x higher spatial grid),Resolves fine conjunctival folds
+Custom CNN,All ReLU layers,Guided Backpropagation,224 x 224 x 3,224 x 224,224 x 224,None (Exact pixel grid),Pixel-level gradient edge sensitivity,Shows capillary boundary lines
+Custom CNN,Fusion (block4.0 + ReLU),Guided Grad-CAM,224 x 224 x 3,224 x 224,224 x 224,Bilinear fusion,High-resolution class-fused spatial localization,Best overall resolution + class specificity
+ResNet-18,layer4.1.conv2 (Final),Grad-CAM,7 x 7 x 512,7 x 7,224 x 224,Bilinear,Very coarse spatial grid (ImageNet deep bottleneck),Broad diffuse eye area
+ResNet-18,layer4.1.conv2 (Final),LayerCAM,7 x 7 x 512,7 x 7,224 x 224,Bilinear,Moderately sharp weighted peaks,Clearer center of activation
+ResNet-18,layer3.1.conv2 (Intermediate),LayerCAM (Intermediate),14 x 14 x 256,14 x 14,224 x 224,Bilinear,2x higher spatial grid resolution,Captures distinct mucosal vs sclera boundary
+ResNet-18,Fusion (layer4 + ReLU),Guided Grad-CAM,224 x 224 x 3,224 x 224,224 x 224,Bilinear fusion,Pixel-level class-specific gradient localization,Resolves coarse bottleneck blur

@@ -1,0 +1,45 @@
+================================================================================
+PHASE 2: DATA LEAKAGE PREVENTION AND AUDIT REPORT
+Project: AI-Based Anemia Detection
+================================================================================
+
+1. IDENTIFICATION OF LEAKAGE VULNERABILITIES
+----------------------------------------
+In clinical medical imaging datasets, standard random train/validation/test splitting causes
+critical evaluation inflation and invalid model validation due to two mechanisms:
+
+A. Patient-Level Multi-Capture Leakage:
+   Each participant (e.g., 'P001') contributes multiple captures:
+   - Eye: Left crop and right crop.
+   - Nail Beds: Up to 10 distinct fingernail captures (digits 1 to 10).
+   - Palm: Left palm and right palm.
+   If individual images from the same subject are split randomly, deep neural networks memorize
+   patient-specific skin tone, lighting conditions, or corneal geometry rather than systemic
+   anemic pallor, producing artificially inflated test accuracy.
+
+B. Cross-Subject Image Duplication Leakage:
+   Phase 1 identified 59 distinct SHA-256 hashes duplicated across multiple filenames and even across
+   different participant IDs in Palm_preprocessed (e.g., P1303, P1322-P1328).
+   Even if splitting strictly by participant ID, having P1303 in Train and P1322 in Test would
+   leak the exact identical image into both sets.
+
+2. MATHEMATICAL SOLUTION: LEAKAGE-FREE CONNECTED CLUSTERS
+----------------------------------------
+- Total distinct participant IDs in usable dataset: 1475
+- Graph construction: Nodes = Subjects; Edges = Shared exact binary SHA-256 hash.
+- Resulting connected components (independent clusters): 1438
+- Largest cluster size: 8 subjects.
+- Splitting was executed strictly on the cluster level, guaranteeing that connected subjects and
+  duplicate images remain completely within their assigned split partition.
+
+3. EMPIRICAL AUDIT RESULTS
+----------------------------------------
+- Train / Validation Subject Overlap: 0 subjects
+- Train / Test Subject Overlap: 0 subjects
+- Validation / Test Subject Overlap: 0 subjects
+- Train / Validation SHA-256 Hash Overlap: 0 hashes
+- Train / Test SHA-256 Hash Overlap: 0 hashes
+- Validation / Test SHA-256 Hash Overlap: 0 hashes
+- Zero Data Leakage Status: VERIFIED & CONFIRMED (100% LEAK-FREE)
+
+================================================================================

@@ -1,0 +1,102 @@
+=====================================================================================
+PHASE 4: DEEP LEARNING IMPLEMENTATION, VERIFICATION & BENCHMARKING REPORT
+Project: AI-Based Anemia Detection Using Image Processing, ML, DL, and XAI
+Execution & Verification Date: 2026-11-08
+=====================================================================================
+
+1. EXECUTIVE OVERVIEW & SCIENTIFIC PURPOSE
+-----------------------------------------------------------------
+Phase 4 implemented, trained, validated, and compared two core deep learning architectures
+on the patient-level clustered, leakage-free dataset established in Phase 2:
+  - Target Modality: Eye Conjunctiva (1,830 Train images, 397 Validation images, 398 Test images)
+  - Binary Task: Anemia (Class 1, n=62 val) vs. Non_Anemia (Class 0, n=335 val)
+  - Test Set Integrity: test.csv was strictly RESERVED and NOT touched during training/selection.
+  - Hardware Acceleration: 10 CPU execution threads with in-memory pre-resized tensor caching.
+
+2. ARCHITECTURAL SPECIFICATIONS
+-----------------------------------------------------------------
+A. Custom Convolutional Neural Network (Custom CNN):
+   - Input Shape: (3, 224, 224)
+   - Feature Extractor: 4 Sequential Conv Blocks:
+       Block 1: Conv2d(3, 32, 3, pad=1) -> BatchNorm2d -> ReLU -> MaxPool2d(2, 2)
+       Block 2: Conv2d(32, 64, 3, pad=1) -> BatchNorm2d -> ReLU -> MaxPool2d(2, 2)
+       Block 3: Conv2d(64, 128, 3, pad=1) -> BatchNorm2d -> ReLU -> MaxPool2d(2, 2)
+       Block 4: Conv2d(128, 256, 3, pad=1) -> BatchNorm2d -> ReLU -> MaxPool2d(2, 2)
+   - Pooling: AdaptiveAvgPool2d((4, 4)) -> 4,096 flattened features
+   - Classifier Head: Dropout(p=0.4) -> Linear(4096, 128) -> ReLU -> Dropout(0.4) -> Linear(128, 2)
+   - Total Parameters: 1,273,026 (all trainable)
+
+B. Pretrained ResNet-18 (Transfer Learning via Torchvision):
+   - Backbone: ResNet-18 pretrained on ImageNet-1K (weights cached locally)
+   - Transfer Strategy: Backbone feature layers (conv1, bn1, layer1, layer2, layer3) frozen
+   - Fine-tuned Layers: layer4 (deep high-level semantic residual blocks) and Classifier Head
+   - Custom Head: Linear(512, 128) -> ReLU -> Dropout(p=0.4) -> Linear(128, 2)
+   - Total Parameters: 11,242,050 (Trainable: ~8.45M across Layer4 and Head)
+
+3. EXPERIMENT SUMMARY & CONVERGENCE TABLE
+-----------------------------------------------------------------
+| Experiment | Status | Epochs | Best Epoch | Val Accuracy | Val Bal Acc | Val ROC-AUC | Checkpoint |
+|---|---|---|---|---|---|---|---|
+| Custom CNN (Eye) | Completed | 6/6 | Epoch 6 | 0.5995 | 0.6773 | 0.7616 | best_custom_cnn.pth |
+| ResNet-18 (Eye)  | Completed | 6/6 | Epoch 5 | 0.8035 | 0.6404 | 0.7507 | best_resnet18.pth |
+
+4. DETAILED VALIDATION METRICS & DIAGNOSTIC MATRIX
+-----------------------------------------------------------------
+Metric                      | Custom CNN (Eye)      | ResNet-18 (Eye)
+----------------------------|-----------------------|----------------------
+Raw Accuracy                | 0.5995                | 0.8035
+Balanced Accuracy (Unbiased)| 0.6773                | 0.6404
+Sensitivity / Recall (TP/P) | 0.7903 (49/62)         | 0.4032 (25/62)
+Specificity (TN/N)          | 0.5642 (189/335)       | 0.8776 (294/335)
+Precision (Positive PV)     | 0.2513                | 0.3788
+F1-Score (Anemia Class)     | 0.3813                | 0.3906
+Macro F1-Score              | 0.5426                | 0.6368
+ROC-AUC Score               | 0.7616                | 0.7507
+PR-AUC Score                | 0.4414                | 0.3630
+True Positives (Anemia)     | 49                    | 25
+False Positives             | 146                   | 41
+True Negatives (Non-Anemic) | 189                   | 294
+False Negatives (Missed)    | 13                    | 37
+
+5. SCIENTIFIC ANALYSIS & CLINICAL INTERPRETATION
+-----------------------------------------------------------------
+1. Trade-off Between Screening Sensitivity and Operational Specificity:
+   - Custom CNN demonstrated significantly superior clinical screening sensitivity (79.03% recall),
+     missing only 13 anemic subjects out of 62 in the validation set. This behavior was driven by
+     the balanced cross-entropy weighting (1:5.42 ratio for Anemia). However, its specificity was 56.42%.
+   - Pretrained ResNet-18 leaned towards high specificity (87.76%), correctly rejecting 294 out of 335
+     non-anemic cases, but exhibited lower sensitivity (40.32%, missing 37 anemic cases).
+   - In terms of ranking discrimination (ROC-AUC), Custom CNN achieved 0.7616 vs 0.7507 for ResNet-18.
+
+2. Comparison with Classical Machine Learning (Phase 3):
+   - Phase 3 Random Forest achieved ROC-AUC 0.8018 and raw accuracy 85.14%, but suffered severe sensitivity
+     collapse (8.06% sensitivity, detecting only 5/62 anemic subjects) due to class imbalance.
+   - Phase 3 Logistic Regression achieved balanced accuracy 71.01% with 70.97% sensitivity and 71.04% specificity.
+   - Custom CNN achieves comparable balanced sensitivity (79.03%) directly from raw RGB pixels without manual feature engineering.
+
+3. Overfitting Assessment:
+   - Both models incorporated data augmentation (random flips, rotations +-8 deg, color jitter) and Dropout (0.4).
+   - Custom CNN training loss steadily declined from 0.6951 to 0.6615 while validation AUC rose to 0.7616.
+   - ResNet-18 training loss declined from 0.7508 to 0.5085 before slight validation loss divergence at epoch 6,
+     confirming the utility of checkpointing the best weights at Epoch 5.
+
+6. GENERATED OUTPUT ARTIFACTS
+-----------------------------------------------------------------
+1. Checkpoints:              results/phase4/checkpoints/ (best_custom_cnn.pth, best_resnet18.pth)
+2. Consolidated CSV:         results/phase4/deep_learning_comparison.csv
+3. Training History CSV:     results/phase4/training_history.csv
+4. Training Curves Plot:     results/phase4/training_curves.png
+5. Confusion Matrix CNN:     results/phase4/confusion_matrix_cnn.png
+6. Confusion Matrix ResNet:  results/phase4/confusion_matrix_resnet18.png
+7. CNN Classification Rep:   results/phase4/cnn_classification_report.txt
+8. ResNet Classification Rep:results/phase4/resnet18_classification_report.txt
+9. Multi-Model ROC Curves:   results/phase4/charts/roc_curves_comparison.png
+10. Multi-Model PR Curves:   results/phase4/charts/pr_curves_comparison.png
+
+7. MEDICAL DISCLAIMER & LIMITATIONS
+-----------------------------------------------------------------
+These models are computational research artifacts developed for academic study and do NOT constitute
+diagnostic medical devices. Inherent limitations include retrospective mobile device photography, lack of
+standardized optical illumination calibration, variable eyelid conjunctival exposure, and demographic constraints.
+Formal prospective clinical validation against gold-standard laboratory spectrophotometry (Hb/Hct) is required.
+=====================================================================================

@@ -1,0 +1,123 @@
+{
+  "project": "AI-Based Anemia Detection",
+  "phase": "Phase 2 - Data Verification, Cleaning and Splitting",
+  "timestamp": "2026-11-04",
+  "split_ratios_target": "70:15:15 (Cluster-Stratified)",
+  "overall_summary": {
+    "total_discovered_images": 7377,
+    "usable_images": 7369,
+    "excluded_images": 8,
+    "train_images": 5136,
+    "validation_images": 1116,
+    "test_images": 1117,
+    "train_pct": 69.7,
+    "validation_pct": 15.14,
+    "test_pct": 15.16
+  },
+  "leakage_prevention": {
+    "grouping_unit": "Connected Component Subject Clusters",
+    "total_clusters": 1438,
+    "patient_overlap_train_val": 0,
+    "patient_overlap_train_test": 0,
+    "patient_overlap_val_test": 0,
+    "exact_duplicate_cross_split": 0
+  },
+  "modality_breakdown": {
+    "Eye": {
+      "total_images": 2611,
+      "splits": {
+        "test": {
+          "total": 384,
+          "percentage_of_modality": 14.71,
+          "class_counts": {
+            "Non_Anemia": 324,
+            "Anemia": 60
+          },
+          "anemia_prevalence_pct": 15.62
+        },
+        "train": {
+          "total": 1830,
+          "percentage_of_modality": 70.09,
+          "class_counts": {
+            "Non_Anemia": 1545,
+            "Anemia": 285
+          },
+          "anemia_prevalence_pct": 15.57
+        },
+        "validation": {
+          "total": 397,
+          "percentage_of_modality": 15.2,
+          "class_counts": {
+            "Non_Anemia": 335,
+            "Anemia": 62
+          },
+          "anemia_prevalence_pct": 15.62
+        }
+      }
+    },
+    "Nail Beds": {
+      "total_images": 1509,
+      "splits": {
+        "test": {
+          "total": 240,
+          "percentage_of_modality": 15.9,
+          "class_counts": {
+            "Non_Anemia": 232,
+            "Anemia": 8
+          },
+          "anemia_prevalence_pct": 3.33
+        },
+        "train": {
+          "total": 1033,
+          "percentage_of_modality": 68.46,
+          "class_counts": {
+            "Non_Anemia": 977,
+            "Anemia": 56
+          },
+          "anemia_prevalence_pct": 5.42
+        },
+        "validation": {
+          "total": 236,
+          "percentage_of_modality": 15.64,
+          "class_counts": {
+            "Non_Anemia": 224,
+            "Anemia": 12
+          },
+          "anemia_prevalence_pct": 5.08
+        }
+      }
+    },
+    "Palm": {
+      "total_images": 3249,
+      "splits": {
+        "test": {
+          "total": 493,
+          "percentage_of_modality": 15.17,
+          "class_counts": {
+            "Non_Anemia": 427,
+            "Anemia": 66
+          },
+          "anemia_prevalence_pct": 13.39
+        },
+        "train": {
+          "total": 2273,
+          "percentage_of_modality": 69.96,
+          "class_counts": {
+            "Non_Anemia": 1975,
+            "Anemia": 298
+          },
+          "anemia_prevalence_pct": 13.11
+        },
+        "validation": {
+          "total": 483,
+          "percentage_of_modality": 14.87,
+          "class_counts": {
+            "Non_Anemia": 423,
+            "Anemia": 60
+          },
+          "anemia_prevalence_pct": 12.42
+        }
+      }
+    }
+  }
+}

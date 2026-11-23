@@ -1,0 +1,43 @@
+================================================================================
+PHASE 2: DATASET COMPATIBILITY AND HARMONIZATION REPORT
+Project: AI-Based Anemia Detection
+================================================================================
+
+1. COMPARATIVE ANALYSIS MATRIX
+----------------------------------------
+Attribute               | dataset_cleaned                 | Palm_preprocessed
+------------------------|---------------------------------|---------------------------------
+Image Modalities        | Eye, Nail Beds, Palm (partial)  | Palm (complete)
+Native Dimensions       | 512 x 512 pixels                | 224 x 224 pixels (padded)
+Target Classes          | Anemia (1), Non_Anemia (0)      | Anemia (1), Non_Anemia (0)
+Prevalence Ratio        | Highly imbalanced (~85% Non)    | Highly imbalanced (~86% Non)
+Color Mode              | 3-channel RGB (JPEG)            | 3-channel RGB (JPEG)
+Subject ID Scheme       | Pxxx (1,391 subjects)           | Pxxx (1,434 subjects)
+Ground Truth Agreement  | 100% consistent across shared   | 100% consistent across shared
+
+2. RELATIONSHIP BETWEEN dataset_cleaned/Palm AND Palm_preprocessed
+----------------------------------------
+- Direct mapping proves that all 439 images (307 subjects) in dataset_cleaned/Palm are the raw,
+  unpadded versions of images in Palm_preprocessed.
+- Palm_preprocessed expands this cohort to 2,818 images (1,434 subjects), matching the participant
+  cohort of the Eye and Nail Bed modalities.
+- Recommendation: For palm experiments, Palm_preprocessed is the primary standardized dataset.
+  dataset_cleaned/Palm should NOT be pooled with Palm_preprocessed to prevent multi-resolution
+  redundancy of the same 439 anatomical captures.
+
+3. MODALITY COMBINATION POLICY
+----------------------------------------
+DECISION: SEPARATE EXPERIMENTS FOR SINGLE-MODALITY BENCHMARKS;
+          PATIENT-LINKED HARMONIZATION FOR MULTIMODAL FUSION NETWORKS.
+
+Rationale:
+1. Anatomical Diversity: Eye conjunctiva crops (microvascular mucous membrane), fingernail beds
+   (keratinized plate and capillary loops), and palmar skin have radically distinct spatial geometries
+   and colorimetric distributions. Naive concatenation into a single flat classification dataset
+   would confuse convolutional feature extractors.
+2. Dimensionality Discrepancy: dataset_cleaned is 512x512; Palm_preprocessed is 224x224 letterboxed.
+3. Experimental Validity: In Phase 3 and Phase 4, the project will benchmark each modality individually
+   (Eye Model vs Nail Model vs Palm Model), followed by Explainable Multimodal Fusion (combining modalities
+   using patient ID linkage).
+
+================================================================================

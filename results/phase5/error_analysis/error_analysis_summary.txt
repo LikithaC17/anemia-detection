@@ -1,0 +1,22 @@
+================================================================================
+PHASE 5: ERROR ANALYSIS & MISCLASSIFICATION BREAKDOWN
+================================================================================
+Total Misclassifications Across Eye Conjunctiva Models: 831
+
+Breakdown by Model and Error Type:
+-----------------------------------------------------------------
+error_type           False Negative  False Positive
+model_name                                         
+Custom CNN                       14             157
+Decision Tree                    20             180
+KNN                              57               3
+Logistic Regression              17             118
+Random Forest                    56               0
+ResNet-18                        36              52
+SVM                              23              98
+
+Top False Negative Observations (Anemic subjects predicted as Non-Anemic):
+  Total False Negatives: 223
+
+Top False Positive Observations (Non-Anemic subjects predicted as Anemic):
+  Total False Positives: 608

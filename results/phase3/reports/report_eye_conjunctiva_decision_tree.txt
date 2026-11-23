@@ -1,0 +1,8 @@
+              precision    recall  f1-score   support
+
+  Non_Anemia       0.92      0.46      0.61       335
+      Anemia       0.21      0.77      0.33        62
+
+    accuracy                           0.51       397
+   macro avg       0.56      0.62      0.47       397
+weighted avg       0.81      0.51      0.57       397

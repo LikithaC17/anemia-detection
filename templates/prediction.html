@@ -1,0 +1,114 @@
+{% extends "base.html" %}
+
+{% block title %}Image Analysis & Prediction - Anemia Detection AI{% endblock %}
+
+{% block content %}
+<div class="page-header">
+  <h2>Image Analysis & Anemia Prediction</h2>
+  <p>Select an anatomical modality and verified trained model, then upload an image for automated classification and explainability.</p>
+</div>
+
+<div class="grid-2">
+  <!-- Left Column: Input Form -->
+  <div class="card">
+    <div class="card-header">
+      <h3 class="card-title">1. Select Configuration</h3>
+      <span id="model-type-badge" class="badge badge-primary">Deep Learning</span>
+    </div>
+
+    <form id="analysis-form" action="{{ url_for('predict') }}" method="POST" enctype="multipart/form-data">
+      
+      <!-- Modality Selection -->
+      <div class="form-group">
+        <label for="modality-select" class="form-label">Anatomical Modality</label>
+        <select id="modality-select" name="modality" class="form-select">
+          <option value="eye_conjunctiva" selected>Eye Conjunctiva (Palpebral Conjunctiva)</option>
+          <option value="palmar_pallor">Palmar Pallor (Palm Surface)</option>
+          <option value="nail_beds">Nail Beds (Fingernails)</option>
+        </select>
+        <small style="color: var(--slate-500); font-size: 0.78rem; display: block; margin-top: 0.25rem;">
+          Deep Learning models are exclusively trained on Eye Conjunctiva. Classical ML is available for all modalities.
+        </small>
+      </div>
+
+      <!-- Model Selection -->
+      <div class="form-group">
+        <label for="model-select" class="form-label">Trained Model</label>
+        <select id="model-select" name="model_id" class="form-select">
+          <!-- Dynamically populated via JS -->
+        </select>
+      </div>
+
+      <!-- Upload Dropzone -->
+      <div class="form-group">
+        <label class="form-label">Upload Image</label>
+        <div id="upload-dropzone" class="dropzone">
+          <div class="dropzone-icon">📷</div>
+          <div class="dropzone-text">Click to browse or drag & drop image here</div>
+          <div class="dropzone-hint">Supports JPG, JPEG, and PNG (Max 16 MB)</div>
+        </div>
+        <input type="file" id="file-input" name="image" accept=".jpg,.jpeg,.png" style="display: none;">
+      </div>
+
+      <!-- Preview Area -->
+      <div id="preview-container" class="preview-container">
+        <img id="preview-image" class="preview-img" alt="Selected Preview">
+        <div id="file-name-display" style="font-size: 0.82rem; font-weight: 600; color: var(--slate-700); margin: 0.5rem 0;"></div>
+        <button type="button" id="remove-btn" class="btn btn-secondary" style="padding: 0.35rem 0.85rem; font-size: 0.8rem;">
+          ✕ Remove Image
+        </button>
+      </div>
+
+      <!-- Submit Button -->
+      <div style="margin-top: 1.5rem;">
+        <button type="submit" id="submit-btn" class="btn btn-primary btn-lg" style="width: 100%;">
+          <span id="submit-spinner" class="spinner" style="display: none; margin-right: 0.5rem;"></span>
+          <span id="submit-btn-text">🔬 Execute Analysis & XAI</span>
+        </button>
+      </div>
+    </form>
+  </div>
+
+  <!-- Right Column: Protocol Guidelines & Preprocessing Info -->
+  <div>
+    <div class="card">
+      <div class="card-header">
+        <h3 class="card-title">Image Acquisition Protocol</h3>
+        <span class="badge badge-secondary">Research Standards</span>
+      </div>
+      <div style="font-size: 0.88rem; color: var(--slate-700); line-height: 1.6;">
+        <div style="margin-bottom: 1rem;">
+          <strong style="color: var(--primary);">👁️ Eye Conjunctiva:</strong>
+          <p style="font-size: 0.82rem; color: var(--slate-500); margin-top: 0.15rem;">
+            Gently pull down the lower eyelid to expose the palpebral conjunctiva. Ensure sharp focus on the mucosal surface without excessive direct flash glare.
+          </p>
+        </div>
+        <div style="margin-bottom: 1rem;">
+          <strong style="color: var(--secondary);">✋ Palmar Pallor:</strong>
+          <p style="font-size: 0.82rem; color: var(--slate-500); margin-top: 0.15rem;">
+            Place hand flat against a neutral non-reflective background. Hand should be open, relaxed, and evenly illuminated.
+          </p>
+        </div>
+        <div style="margin-bottom: 1rem;">
+          <strong style="color: #6366f1;">💅 Nail Beds:</strong>
+          <p style="font-size: 0.82rem; color: var(--slate-500); margin-top: 0.15rem;">
+            Capture unpolished fingernails under standardized daylight spectrum illumination, focusing on the lunula and capillary bed.
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="card-header">
+        <h3 class="card-title">Automated Preprocessing Flow</h3>
+      </div>
+      <ul style="font-size: 0.85rem; color: var(--slate-700); padding-left: 1.25rem; line-height: 1.7;">
+        <li><strong>Cryptographic Verification:</strong> SHA-256 hash checks and mime-type validation.</li>
+        <li><strong>Deep Learning Pipeline:</strong> Bilinear interpolation to 224×224 and PyTorch ImageNet tensor normalization.</li>
+        <li><strong>Classical ML Pipeline:</strong> Extraction of 151 scalar features (RGB/HSV/LAB histograms, GLCM contrast, LBP texture) followed by z-score standardization.</li>
+        <li><strong>Real-Time Explainability:</strong> Dynamic generation of Grad-CAM / LayerCAM / Guided Backprop or SHAP waterfall plots.</li>
+      </ul>
+    </div>
+  </div>
+</div>
+{% endblock %}

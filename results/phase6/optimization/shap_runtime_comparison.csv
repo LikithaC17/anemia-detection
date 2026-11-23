@@ -1,0 +1,6 @@
+model_name,model_type,explainer_method,optimization_strategy,background_samples,explained_samples,status_before,status_after,runtime_seconds,runtime_per_sample_seconds
+Random Forest,Tree Ensemble,TreeExplainer,Exact polynomial-time tree traversal,100,384,COMPLETE,COMPLETE,2.45,0.006
+Logistic Regression,Linear Model,LinearExplainer,Analytical log-odds feature attributions,100,384,COMPLETE,COMPLETE,1.82,0.005
+Decision Tree,Single Tree,TreeExplainer,Direct decision path attribution,100,384,COMPLETE,COMPLETE,0.35,0.001
+SVM (RBF),Kernel Machine,KernelExplainer,Bounded background (n=30) + bounded evaluation budget (nsamples=100) on representative test cohort,30,8,BLOCKED (Prohibitive O(N*M) complexity on 151 dims),COMPLETE (Optimized),6.28,0.785
+KNN,Instance-based,KernelExplainer,Bounded background (n=30) + bounded evaluation budget (nsamples=100) on representative test cohort,30,8,BLOCKED (Minority collapse & excessive pairwise distances),COMPLETE (Optimized),1.09,0.137

@@ -1,0 +1,118 @@
+{% extends "base.html" %}
+
+{% block title %}About Project - Anemia Detection AI{% endblock %}
+
+{% block content %}
+<div class="page-header">
+  <h2>About the Academic Project</h2>
+  <p>Engineering methodology, dataset validation, architectural design, and research ethics.</p>
+</div>
+
+<!-- Project Overview -->
+<div class="card" style="margin-bottom: 2rem;">
+  <div class="card-header">
+    <h3 class="card-title">Project Abstract</h3>
+    <span class="badge badge-primary">Research Prototype</span>
+  </div>
+  <p style="font-size: 0.95rem; color: var(--slate-700); line-height: 1.7; margin-bottom: 1rem;">
+    Anemia is a major global public health disorder characterized by reduced circulating hemoglobin concentrations, impairing cellular oxygen delivery. Traditional screening necessitates venous blood draws or invasive finger-pricks, presenting logistical hurdles in low-resource and remote settings.
+  </p>
+  <p style="font-size: 0.95rem; color: var(--slate-700); line-height: 1.7;">
+    This project, titled <strong>"AI-Based Anemia Detection Using Image Processing, Machine Learning, Deep Learning, and Explainable AI,"</strong> explores non-invasive multi-modal screening by assessing superficial vascular beds. We systematically developed, audited, and benchmarked 17 machine learning and deep learning pipelines across Eye Conjunctiva, Palmar Pallor, and Nail Bed modalities under rigorous patient-isolated data partitioning, augmented with granular post-hoc explainability (SHAP & LayerCAM).
+  </p>
+</div>
+
+<!-- Project Phases & Development Lifecycle -->
+<div class="card" style="margin-bottom: 2rem;">
+  <div class="card-header">
+    <h3 class="card-title">Development Lifecycle (Phases 1–7)</h3>
+    <span class="badge badge-secondary">Structured Methodology</span>
+  </div>
+  <div style="display: flex; flex-direction: column; gap: 1rem; font-size: 0.88rem; color: var(--slate-700);">
+    <div style="border-left: 3px solid var(--primary); padding-left: 1rem;">
+      <strong style="color: var(--primary);">Phase 1: Dataset Inspection & Extraction</strong>
+      <p style="font-size: 0.82rem; color: var(--slate-500); margin-top: 0.2rem;">
+        Validated ZIP archives (<code>dataset_cleaned.zip</code> and <code>Palm_preprocessed.zip</code>), verified file integrity, inspected folder hierarchies, and mapped physical modalities.
+      </p>
+    </div>
+    <div style="border-left: 3px solid var(--primary); padding-left: 1rem;">
+      <strong style="color: var(--primary);">Phase 2: Data Verification, Cleaning & Splitting</strong>
+      <p style="font-size: 0.82rem; color: var(--slate-500); margin-top: 0.2rem;">
+        Identified exact and near-duplicates, cleaned corrupted files, verified ground-truth annotations, and established patient-clustered 70:15:15 partitions (Train: 5,136; Val: 1,116; Test: 1,117).
+      </p>
+    </div>
+    <div style="border-left: 3px solid var(--secondary); padding-left: 1rem;">
+      <strong style="color: var(--secondary);">Phase 3: Classical Machine Learning</strong>
+      <p style="font-size: 0.82rem; color: var(--slate-500); margin-top: 0.2rem;">
+        Engineered 151 color (RGB, HSV, LAB, ratios, histograms) and texture (GLCM, LBP) features. Trained and tuned 15 classifier pipelines across Eye, Palm, and Nail beds.
+      </p>
+    </div>
+    <div style="border-left: 3px solid var(--secondary); padding-left: 1rem;">
+      <strong style="color: var(--secondary);">Phase 4: Deep Learning Implementation</strong>
+      <p style="font-size: 0.82rem; color: var(--slate-500); margin-top: 0.2rem;">
+        Implemented a Custom 4-Block CNN and Transfer Learning ResNet-18 with ImageNet initialization, early stopping, and cosine annealing learning rate schedules.
+      </p>
+    </div>
+    <div style="border-left: 3px solid #6366f1; padding-left: 1rem;">
+      <strong style="color: #6366f1;">Phase 5: Comprehensive Independent Evaluation</strong>
+      <p style="font-size: 0.82rem; color: var(--slate-500); margin-top: 0.2rem;">
+        Conducted unified blind testing across all 17 models on the untouched test partition, generating 95% bootstrap confidence intervals, ROC-AUC, and clinical recall curves.
+      </p>
+    </div>
+    <div style="border-left: 3px solid #6366f1; padding-left: 1rem;">
+      <strong style="color: #6366f1;">Phase 6: Explainable AI & Limitation Improvements</strong>
+      <p style="font-size: 0.82rem; color: var(--slate-500); margin-top: 0.2rem;">
+        Integrated SHAP for classical models and Grad-CAM for deep networks. Solved computational bottlenecks for non-linear SVM and KNN via bounded KernelExplainer; upgraded spatial CAM resolution via LayerCAM and Guided Backpropagation.
+      </p>
+    </div>
+    <div style="border-left: 3px solid #10b981; padding-left: 1rem;">
+      <strong style="color: #10b981;">Phase 7: Responsive Web Application Interface</strong>
+      <p style="font-size: 0.82rem; color: var(--slate-500); margin-top: 0.2rem;">
+        Developed a production-grade modular Flask web application providing unified drag-and-drop image inference, real-time XAI rendering, and verified research dashboards.
+      </p>
+    </div>
+  </div>
+</div>
+
+<!-- Technology Stack & Environment -->
+<div class="card" style="margin-bottom: 2rem;">
+  <div class="card-header">
+    <h3 class="card-title">Technology Stack</h3>
+    <span class="badge badge-secondary">Verified Tooling</span>
+  </div>
+  <div class="grid-3" style="font-size: 0.85rem; color: var(--slate-700);">
+    <div style="background: var(--slate-100); padding: 1rem; border-radius: 8px;">
+      <strong>Core Backend</strong>
+      <ul style="margin-top: 0.5rem; padding-left: 1rem; color: var(--slate-500);">
+        <li>Python 3.14</li>
+        <li>Flask 3.0.0</li>
+        <li>Werkzeug & Jinja2</li>
+      </ul>
+    </div>
+    <div style="background: var(--slate-100); padding: 1rem; border-radius: 8px;">
+      <strong>Modeling & Vision</strong>
+      <ul style="margin-top: 0.5rem; padding-left: 1rem; color: var(--slate-500);">
+        <li>PyTorch 2.14 & Torchvision</li>
+        <li>scikit-learn 1.8.0</li>
+        <li>OpenCV 5.0.0 & Pillow</li>
+      </ul>
+    </div>
+    <div style="background: var(--slate-100); padding: 1rem; border-radius: 8px;">
+      <strong>Explainability & Analytics</strong>
+      <ul style="margin-top: 0.5rem; padding-left: 1rem; color: var(--slate-500);">
+        <li>SHAP 0.54.1</li>
+        <li>Custom Grad-CAM & LayerCAM</li>
+        <li>NumPy, Pandas, Matplotlib</li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+<!-- Medical Disclaimer Notice -->
+<div style="background: #fffbeb; border: 1px solid #fef3c7; border-left: 5px solid #d97706; padding: 1.25rem 1.5rem; border-radius: 8px;">
+  <h4 style="color: #92400e; font-size: 1.05rem; margin-bottom: 0.35rem;">Academic Research Disclaimer</h4>
+  <p style="color: #78350f; font-size: 0.88rem; line-height: 1.6;">
+    This application and its underlying machine learning models are designed strictly for academic research and technology demonstration purposes. Non-invasive optical colorimetry and photographic biometric analysis are subject to confounding factors including skin tone variations, ambient illumination differences, hemoglobinopathies, and camera hardware discrepancies. <strong>This tool is not intended for clinical diagnostic purposes, treatment planning, or patient management.</strong> Standard laboratory complete blood count (CBC) hemoglobin testing administered by certified medical professionals remains required for anemia diagnosis.
+  </p>
+</div>
+{% endblock %}

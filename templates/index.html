@@ -1,0 +1,119 @@
+{% extends "base.html" %}
+
+{% block title %}Home - Anemia Detection AI{% endblock %}
+
+{% block content %}
+<div class="page-header" style="text-align: center; max-width: 850px; margin: 1rem auto 2.5rem auto;">
+  <span class="badge badge-primary" style="margin-bottom: 0.75rem; font-size: 0.82rem; padding: 0.35rem 0.85rem;">Academic Research Prototype</span>
+  <h2 style="font-size: 2.3rem; line-height: 1.25; margin-bottom: 1rem; color: var(--dark);">
+    AI-Based Anemia Detection Using Image Processing, ML, DL, and Explainable AI
+  </h2>
+  <p style="font-size: 1.05rem; color: var(--slate-700); line-height: 1.6;">
+    An end-to-end non-invasive biometric framework integrating classical machine learning pipelines, deep convolutional neural networks (Custom CNN & ResNet-18), and explainable AI (SHAP & LayerCAM) across multiple anatomical sites.
+  </p>
+  <div style="margin-top: 1.75rem; display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap;">
+    <a href="{{ url_for('prediction') }}" class="btn btn-primary btn-lg">🚀 Start Image Analysis</a>
+    <a href="{{ url_for('dashboard') }}" class="btn btn-secondary btn-lg">📊 View Performance Dashboard</a>
+  </div>
+</div>
+
+<!-- Modalities Grid -->
+<div style="margin-bottom: 2.5rem;">
+  <h3 style="font-size: 1.35rem; font-weight: 700; color: var(--slate-700); margin-bottom: 1.25rem;">
+    Supported Anatomical Modalities
+  </h3>
+  <div class="grid-3">
+    <!-- Card 1: Eye Conjunctiva -->
+    <div class="card" style="border-top: 4px solid var(--primary);">
+      <div style="display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 0.75rem;">
+        <span style="font-size: 2rem;">👁️</span>
+        <span class="badge badge-primary">7 Models Available</span>
+      </div>
+      <h4 style="font-size: 1.2rem; font-weight: 700; margin-bottom: 0.5rem;">Eye Conjunctiva</h4>
+      <p style="font-size: 0.88rem; color: var(--slate-500); margin-bottom: 1rem;">
+        Palpebral conjunctiva images captured under controlled lighting. Primary modality with both deep learning and classical feature analysis.
+      </p>
+      <div style="font-size: 0.82rem; color: var(--slate-700); background: var(--slate-100); padding: 0.65rem 0.85rem; border-radius: 6px; margin-bottom: 1rem;">
+        <strong>Supported Models:</strong> ResNet-18, Custom CNN, SVM (RBF), Random Forest, Logistic Regression, KNN, Decision Tree.
+      </div>
+      <div style="font-size: 0.8rem; color: var(--secondary);">
+        ✓ Supported XAI: Grad-CAM, LayerCAM, Guided Backprop & SHAP
+      </div>
+    </div>
+
+    <!-- Card 2: Palmar Pallor -->
+    <div class="card" style="border-top: 4px solid var(--secondary);">
+      <div style="display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 0.75rem;">
+        <span style="font-size: 2rem;">✋</span>
+        <span class="badge badge-secondary">5 Models Available</span>
+      </div>
+      <h4 style="font-size: 1.2rem; font-weight: 700; margin-bottom: 0.5rem;">Palmar Pallor</h4>
+      <p style="font-size: 0.88rem; color: var(--slate-500); margin-bottom: 1rem;">
+        Segmented palm images analyzing dermal vascularization and erythema indices across palmar creases and thenar eminences.
+      </p>
+      <div style="font-size: 0.82rem; color: var(--slate-700); background: var(--slate-100); padding: 0.65rem 0.85rem; border-radius: 6px; margin-bottom: 1rem;">
+        <strong>Supported Models:</strong> SVM (RBF), Random Forest, Logistic Regression, KNN, Decision Tree.
+      </div>
+      <div style="font-size: 0.8rem; color: var(--slate-500);">
+        ✓ Preprocessing: 151 hand-crafted color & texture features
+      </div>
+    </div>
+
+    <!-- Card 3: Nail Beds -->
+    <div class="card" style="border-top: 4px solid #6366f1;">
+      <div style="display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 0.75rem;">
+        <span style="font-size: 2rem;">💅</span>
+        <span class="badge" style="background: #e0e7ff; color: #4338ca;">5 Models Available</span>
+      </div>
+      <h4 style="font-size: 1.2rem; font-weight: 700; margin-bottom: 0.5rem;">Nail Beds</h4>
+      <p style="font-size: 0.88rem; color: var(--slate-500); margin-bottom: 1rem;">
+        Fingernail lunula and bed regions evaluated for capillary bed micro-circulation and pallor reflectance.
+      </p>
+      <div style="font-size: 0.82rem; color: var(--slate-700); background: var(--slate-100); padding: 0.65rem 0.85rem; border-radius: 6px; margin-bottom: 1rem;">
+        <strong>Supported Models:</strong> SVM (RBF), Random Forest, Logistic Regression, KNN, Decision Tree.
+      </div>
+      <div style="font-size: 0.8rem; color: var(--slate-500);">
+        ✓ Preprocessing: Color space moments (RGB/HSV/LAB) & GLCM
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Architecture Pipeline Steps -->
+<div class="card" style="margin-bottom: 2.5rem;">
+  <div class="card-header">
+    <h3 class="card-title">End-to-End System Architecture</h3>
+    <span class="badge badge-primary">Phases 1–6 Integration</span>
+  </div>
+  <div class="grid-4" style="text-align: center;">
+    <div style="padding: 1rem; background: var(--slate-100); border-radius: 8px;">
+      <div style="font-size: 1.6rem; margin-bottom: 0.25rem;">1️⃣</div>
+      <strong style="display: block; font-size: 0.95rem; color: var(--slate-700);">Data Verification</strong>
+      <p style="font-size: 0.8rem; color: var(--slate-500); margin-top: 0.35rem;">Patient-clustered 70:15:15 splits preventing data leakage across 7,369 images.</p>
+    </div>
+    <div style="padding: 1rem; background: var(--slate-100); border-radius: 8px;">
+      <div style="font-size: 1.6rem; margin-bottom: 0.25rem;">2️⃣</div>
+      <strong style="display: block; font-size: 0.95rem; color: var(--slate-700);">Feature Extraction</strong>
+      <p style="font-size: 0.8rem; color: var(--slate-500); margin-top: 0.35rem;">151 statistical color and texture features (GLCM, LBP, erythema indices).</p>
+    </div>
+    <div style="padding: 1rem; background: var(--slate-100); border-radius: 8px;">
+      <div style="font-size: 1.6rem; margin-bottom: 0.25rem;">3️⃣</div>
+      <strong style="display: block; font-size: 0.95rem; color: var(--slate-700);">Multi-Model Inference</strong>
+      <p style="font-size: 0.8rem; color: var(--slate-500); margin-top: 0.35rem;">17 verified models (SVM, RF, LR, KNN, DT, Custom CNN, ResNet-18).</p>
+    </div>
+    <div style="padding: 1rem; background: var(--slate-100); border-radius: 8px;">
+      <div style="font-size: 1.6rem; margin-bottom: 0.25rem;">4️⃣</div>
+      <strong style="display: block; font-size: 0.95rem; color: var(--slate-700);">Explainable AI (XAI)</strong>
+      <p style="font-size: 0.8rem; color: var(--slate-500); margin-top: 0.35rem;">SHAP attributions and 224x224 Guided Grad-CAM / LayerCAM visualizations.</p>
+    </div>
+  </div>
+</div>
+
+<!-- Ethical & Research Disclaimer -->
+<div style="background: #fffbeb; border: 1px solid #fef3c7; border-left: 6px solid #f59e0b; padding: 1.25rem 1.5rem; border-radius: 8px;">
+  <h4 style="color: #92400e; font-size: 1.05rem; margin-bottom: 0.35rem;">⚖️ Academic Research & Clinical Safety Boundaries</h4>
+  <p style="color: #78350f; font-size: 0.88rem; line-height: 1.5;">
+    This web platform is built for peer review and engineering verification. Statistical correlations observed in facial or palmar photographs cannot substitute for clinical laboratory testing. Neither this application nor its underlying models make actionable medical recommendations.
+  </p>
+</div>
+{% endblock %}

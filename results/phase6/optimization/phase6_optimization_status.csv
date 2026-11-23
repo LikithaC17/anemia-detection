@@ -1,0 +1,8 @@
+task,model,strategy,status,output_location
+Optimize SHAP for SVM,SVM (RBF),KernelExplainer with controlled background (n=30) and bounded budget (nsamples=100),COMPLETE,results/phase6/optimization/shap/svm/
+Optimize SHAP for KNN,KNN (Distance-Weighted),KernelExplainer with controlled background (n=30) and bounded budget (nsamples=100),COMPLETE,results/phase6/optimization/shap/knn/
+LayerCAM Implementation,Custom CNN & ResNet-18,Element-wise positive gradient weighting on final and intermediate layers,COMPLETE,results/phase6/optimization/gradcam/
+Guided Backpropagation,Custom CNN & ResNet-18,Custom ReLU backward hooks clamping negative gradient components,COMPLETE,results/phase6/optimization/gradcam/
+Guided Grad-CAM,Custom CNN & ResNet-18,Pointwise fusion of Guided Backprop saliency with class-activation heatmaps,COMPLETE,results/phase6/optimization/gradcam/
+Comparative Visualizations,Custom CNN & ResNet-18,7-panel side-by-side diagnostic galleries across representative clinical test cases,COMPLETE,results/phase6/optimization/gradcam/*/comparisons/
+Final Improvement Report,All Models,Comprehensive technical and clinical limitation synthesis,COMPLETE,results/phase6/optimization/reports/phase6_limitation_improvement_report.txt

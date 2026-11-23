@@ -1,0 +1,44 @@
+================================================================================
+SVM SHAP OPTIMIZATION REPORT (EYE CONJUNCTIVA)
+================================================================================
+1. PROBLEM STATEMENT:
+   In initial Phase 6 execution, SHAP for SVM was blocked because standard KernelExplainer
+   evaluating all 384 test samples across 151 features resulted in a prohibitive computational
+   complexity: O(N_test * N_bg * 2^M) requiring several hours of CPU compute.
+
+2. MODEL ARCHITECTURE & KERNEL AUDIT:
+   - Pipeline: StandardScaler -> SVC(kernel='rbf', C=1.0, gamma=0.01, class_weight='balanced')
+   - Kernel Type: Radial Basis Function (RBF) - non-linear kernel machine.
+   - Probability Output: Platt scaling enabled (probability=True), generating valid calibrated probabilities.
+
+3. OPTIMIZATION STRATEGY IMPLEMENTED:
+   - Explainer: shap.KernelExplainer wrapped around predict_proba(x)[:, 1] (Anemia class).
+   - Background Sampling: Representative cohort of 30 training samples selected from eye_train_features.csv.
+   - Target Explanation Cohort: 8 representative test cases (True Positive, True Negative, False Positive, False Negative, Borderline).
+   - Evaluation Budget: Controlled budget of nsamples=100 evaluations per test instance.
+
+4. EMPIRICAL RUNTIME & EFFICIENCY:
+   - Total Execution Time: 6.28 seconds.
+   - Runtime Per Instance: 0.785 seconds/sample.
+   - Output Shape: [8, 151].
+
+5. TOP GLOBAL PREDICTIVE FEATURES (RBF SVM):
+   01. rg_ratio_mean
+   02. erythema_index_mean
+   03. rgb_hist_g_bin11
+   04. hsv_hist_s_bin12
+   05. glcm_dissimilarity_d1_mean
+
+6. ARTIFACTS GENERATED:
+   - results/phase6/optimization/shap/svm/shap_bar_svm.png
+   - results/phase6/optimization/shap/svm/shap_beeswarm_svm.png
+   - results/phase6/optimization/shap/svm/svm_global_feature_importance.csv
+   - results/phase6/optimization/shap/svm/svm_individual_explanations.csv
+   - results/phase6/optimization/shap/svm/individual/waterfall_svm_sample_*.png
+================================================================================
+
+7. ACADEMIC & MEDICAL RESEARCH INTEGRITY DISCLAIMER:
+   Explainability methods show how a trained model responds to input features.
+   They do not establish medical causality, confirm anemia, or demonstrate clinical validity.
+   Laboratory hemoglobin testing and professional medical evaluation remain necessary.
+================================================================================

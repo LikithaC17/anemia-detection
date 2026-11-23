@@ -1,0 +1,50 @@
+================================================================================
+PHASE 7 EXPLAINABILITY (XAI) INTEGRATION REPORT
+Project: AI-Based Anemia Detection Using Image Processing, ML, DL, and XAI
+Generated: 2026-11-08 15:28:00
+Status: VERIFIED & OPERATIONAL IN PRODUCTION FLASK UI
+================================================================================
+
+1. OVERVIEW & DESIGN PRINCIPLES
+--------------------------------------------------------------------------------
+Phase 7 seamlessly surfaces post-hoc explainability directly into the inference
+workflow. When a user submits an image for prediction, the application not only
+outputs the binary class and confidence probability, but also generates dynamic
+visual and statistical explanations tailored to the model architecture.
+
+2. DEEP LEARNING SPATIAL EXPLAINABILITY PIPELINE
+--------------------------------------------------------------------------------
+- Target Models: Pretrained ResNet-18 & Custom 4-Block CNN (Eye Conjunctiva)
+- Execution Flow:
+  1. Forward pass computes logits and softmax probabilities.
+  2. Backward hook registered on target layer captures gradients with respect
+     to the predicted class.
+  3. Four complementary spatial maps are dynamically synthesized and saved:
+     * Standard Grad-CAM: Global average pooling over gradients ($28 \times 28$ / $7 \times 7$ grid).
+     * LayerCAM: Element-wise positive gradient weighting preventing vascular wash-out.
+     * Guided Backpropagation: Clamped ReLU backward pass yielding $224 \times 224$ pixel-level edge saliency.
+     * Guided Grad-CAM: Pointwise Hadamard product fusing class activation heatmaps with structural capillary edges.
+- Artifact Delivery: Rendered in a 4-panel responsive clinical inspection grid on the Results page.
+
+3. CLASSICAL MACHINE LEARNING ATTRIBUTION PIPELINE (SHAP)
+--------------------------------------------------------------------------------
+- Target Models: Random Forest, Decision Tree, Logistic Regression, SVM (RBF), KNN.
+- Execution Flow:
+  1. 151 color and texture features extracted deterministically via PIL/OpenCV.
+  2. Explainer Selection:
+     * TreeExplainer for Random Forest and Decision Tree (exact polynomial traversal).
+     * LinearExplainer for Logistic Regression (analytical log-odds attribution).
+     * Bounded KernelExplainer for SVM (RBF) and KNN ($N_{\text{bg}}=30$, $\text{nsamples}=100$).
+  3. Dynamic Waterfall Plot generated via Matplotlib and saved to the session artifact folder.
+  4. Top 3 positive features (pushing towards Anemia) and Top 3 negative features (pushing towards Non-Anemia)
+     extracted and tabulated in a clear directional table.
+- Biological Correlation: Handcrafted erythema index and red-green ratios consistently emerge
+  as key drivers of the model's decision boundary.
+
+4. EXPLANATION LIMITATION NOTICE & SCIENTIFIC ETHICS
+--------------------------------------------------------------------------------
+- Saliency maps and SHAP attributions reflect mathematical sensitivities of trained
+  weights, not histological or biological ground truth.
+- The web interface explicitly marks highlighted regions as computational attention,
+  strictly barring clinical diagnostic claims.
+================================================================================

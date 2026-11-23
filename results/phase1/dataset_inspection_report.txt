@@ -1,0 +1,153 @@
+================================================================================
+PHASE 1: COMPREHENSIVE DATASET INSPECTION & QA AUDIT REPORT
+Project: AI-Based Anemia Detection
+Modality Scope: Eye Conjunctiva, Nail Beds, Palmar Pallor
+Status: Verification, Extraction & Inspection Complete
+================================================================================
+
+1. EXECUTIVE SUMMARY
+----------------------------------------
+- Total image files discovered: 7377
+- Total valid readable images: 7377
+- Total corrupted images: 0
+- Total duplicate pairs cataloged: 191
+- Datasets analyzed: dataset_cleaned, Palm_preprocessed
+
+2. ARCHIVE VERIFICATION & DISCOVERY METRICS
+----------------------------------------
+Dataset: Palm_preprocessed
+  Total Images Discovered: 2818
+  Valid Images: 2818
+  Corrupted Images: 0
+  Internal Exact Duplicates: 85
+  Distinct SHA-256 Hashes: 2733
+  Modalities Identified: Palm
+  Class Labels: Anemia, Non_Anemia
+  Distinct Subject IDs (from filenames): 1434
+  File Formats: JPEG
+  Color Modes: RGB
+  Min Dimensions: 224x224
+  Max Dimensions: 224x224
+  Median Dimensions: 224x224
+  Total Uncompressed Storage: 21.91 MB
+
+Dataset: dataset_cleaned
+  Total Images Discovered: 4559
+  Valid Images: 4559
+  Corrupted Images: 0
+  Internal Exact Duplicates: 0
+  Distinct SHA-256 Hashes: 4559
+  Modalities Identified: Eye, Nail Beds, Palm
+  Class Labels: Anemia, Non_Anemia
+  Distinct Subject IDs (from filenames): 1391
+  File Formats: JPEG
+  Color Modes: RGB
+  Min Dimensions: 512x512
+  Max Dimensions: 512x512
+  Median Dimensions: 512x512
+  Total Uncompressed Storage: 129.13 MB
+
+3. DETAILED CLASS & MODALITY BREAKDOWN
+----------------------------------------
+          dataset  modality anatomy_subcategory class_label  image_count  unique_subjects  mean_width  mean_height  mean_aspect_ratio  total_size_mb  percentage_in_modality
+Palm_preprocessed      Palm           Left Palm      Anemia          193              193       224.0        224.0                1.0           1.40                    6.85
+Palm_preprocessed      Palm           Left Palm  Non_Anemia         1219             1219       224.0        224.0                1.0           9.50                   43.26
+Palm_preprocessed      Palm          Right Palm      Anemia          187              187       224.0        224.0                1.0           1.38                    6.64
+Palm_preprocessed      Palm          Right Palm  Non_Anemia         1219             1219       224.0        224.0                1.0           9.63                   43.26
+  dataset_cleaned       Eye    left_conjunctiva  Non_Anemia         1114             1114       512.0        512.0                1.0          25.77                   42.67
+  dataset_cleaned       Eye           left_crop      Anemia          208              208       512.0        512.0                1.0           4.34                    7.97
+  dataset_cleaned       Eye   right_conjunctiva  Non_Anemia         1090             1090       512.0        512.0                1.0          25.47                   41.75
+  dataset_cleaned       Eye          right_crop      Anemia          199              199       512.0        512.0                1.0           4.33                    7.62
+  dataset_cleaned Nail Beds                   1      Anemia            9                9       512.0        512.0                1.0           0.32                    0.60
+  dataset_cleaned Nail Beds                   1  Non_Anemia          160              160       512.0        512.0                1.0           5.23                   10.60
+  dataset_cleaned Nail Beds                  10      Anemia            6                6       512.0        512.0                1.0           0.18                    0.40
+  dataset_cleaned Nail Beds                  10  Non_Anemia          170              170       512.0        512.0                1.0           5.09                   11.27
+  dataset_cleaned Nail Beds                   2      Anemia            8                8       512.0        512.0                1.0           0.26                    0.53
+  dataset_cleaned Nail Beds                   2  Non_Anemia          143              143       512.0        512.0                1.0           4.63                    9.48
+  dataset_cleaned Nail Beds                   3      Anemia            7                7       512.0        512.0                1.0           0.25                    0.46
+  dataset_cleaned Nail Beds                   3  Non_Anemia          137              137       512.0        512.0                1.0           4.49                    9.08
+  dataset_cleaned Nail Beds                   4      Anemia            5                5       512.0        512.0                1.0           0.16                    0.33
+  dataset_cleaned Nail Beds                   4  Non_Anemia          135              135       512.0        512.0                1.0           4.42                    8.95
+  dataset_cleaned Nail Beds                   5      Anemia            6                6       512.0        512.0                1.0           0.22                    0.40
+  dataset_cleaned Nail Beds                   5  Non_Anemia          125              125       512.0        512.0                1.0           4.00                    8.28
+  dataset_cleaned Nail Beds                   6      Anemia            9                9       512.0        512.0                1.0           0.27                    0.60
+  dataset_cleaned Nail Beds                   6  Non_Anemia          122              122       512.0        512.0                1.0           3.95                    8.08
+  dataset_cleaned Nail Beds                   7      Anemia           10               10       512.0        512.0                1.0           0.33                    0.66
+  dataset_cleaned Nail Beds                   7  Non_Anemia          137              137       512.0        512.0                1.0           4.31                    9.08
+  dataset_cleaned Nail Beds                   8      Anemia           10               10       512.0        512.0                1.0           0.32                    0.66
+  dataset_cleaned Nail Beds                   8  Non_Anemia          147              147       512.0        512.0                1.0           4.65                    9.74
+  dataset_cleaned Nail Beds                   9      Anemia            6                6       512.0        512.0                1.0           0.18                    0.40
+  dataset_cleaned Nail Beds                   9  Non_Anemia          157              157       512.0        512.0                1.0           4.88                   10.40
+  dataset_cleaned      Palm           Left Palm      Anemia           22               22       512.0        512.0                1.0           0.88                    5.01
+  dataset_cleaned      Palm           Left Palm  Non_Anemia          198              198       512.0        512.0                1.0           9.59                   45.10
+  dataset_cleaned      Palm          Right Palm      Anemia           24               24       512.0        512.0                1.0           1.02                    5.47
+  dataset_cleaned      Palm          Right Palm  Non_Anemia          195              195       512.0        512.0                1.0           9.58                   44.42
+
+4. STRUCTURAL & ANATOMICAL MODALITY FINDINGS
+----------------------------------------
+MODALITY A: EYE CONJUNCTIVA (within dataset_cleaned/Eye)
+  Total Eye images: 2611
+  Classes: Anemia (407) vs Non_Anemia (2204)
+  Folder Hierarchy Observations:
+    * Anemia Eye has subfolders: 'left_crop' and 'right_crop'
+    * Non_Anemia Eye has subfolders: 'left_conjunctiva' and 'right_conjunctiva'
+    * Noticeable naming asymmetry: 'crop' vs 'conjunctiva' convention.
+  Dimensions: min 512x512, max 512x512, median 512x512
+
+MODALITY B: NAIL BEDS (within dataset_cleaned/Nail Beds)
+  Total Nail Bed images: 1509
+  Classes: Anemia (76) vs Non_Anemia (1433)
+  Folder Hierarchy Observations:
+    * Both Anemia and Non_Anemia contain 10 numbered subfolders ('1' to '10'), corresponding to individual fingers/digits.
+  Dimensions: min 512x512, max 512x512, median 512x512
+
+MODALITY C: PALM (within dataset_cleaned/Palm)
+  Total Raw Palm images: 439
+  Classes: Anemia (46) vs Non_Anemia (393)
+  Folder Hierarchy Observations:
+    * Subdivided into 'Left Palm' and 'Right Palm' for both classes.
+  Dimensions: min 512x512, max 512x512, median 512x512
+
+MODALITY D: PALM PREPROCESSED (within Palm_preprocessed)
+  Total Preprocessed Palm images: 2818
+  Classes: Anemia (380) vs Non_Anemia (2438)
+  Subcategories: 'Left Palm' and 'Right Palm'
+  Dimensions: All images strictly resized and letterboxed/padded to 224x224 RGB.
+  Metadata: Accompanied by README.txt confirming standardization pipeline.
+
+5. DATASET COMPATIBILITY & CROSS-RELATIONSHIP
+----------------------------------------
+Key Relationship Discovery:
+  - Palm_preprocessed is the standardized, resized (224x224), padded pipeline artifact derived from dataset_cleaned/Palm.
+  - Filenames match 1-to-1: e.g. P001.jpg, P008.jpg, etc.
+  - dataset_cleaned contains raw multimodal captures: Eye (palpebral conjunctiva), Nail Beds (digits 1-10), and Palm (unstandardized).
+  - Severe class imbalance exists in Palm datasets: Non_Anemia heavily outnumbers Anemia (~12.8:1 ratio).
+
+6. DATA QUALITY, CORRUPTION & DUPLICATE AUDIT
+----------------------------------------
+- Corrupted/Unreadable image count: 0
+    * Zero byte corruptions or header read errors detected. All files successfully verified and decoded.
+
+- Exact Duplicates (SHA-256): 155 pairs
+- Near-Duplicates (dHash): 36 pairs
+- Empty directories: 0
+- Non-image files: 1
+    * Palm_preprocessed: README.txt (296 bytes)
+
+7. IDENTIFIED PROBLEMS & RECOMMENDATIONS FOR PHASE 2
+----------------------------------------
+Problem 1: Class Imbalance
+  - Non_Anemia has far more samples than Anemia across modalities, especially Palm (~2,438 vs 380).
+  - Recommendation: Stratified splitting, class weighting, or balanced sampling/augmentation in subsequent phases.
+
+Problem 2: Directory Naming Inconsistency in Eye Modality
+  - Anemia Eye uses 'left_crop' / 'right_crop', while Non_Anemia Eye uses 'left_conjunctiva' / 'right_conjunctiva'.
+  - Recommendation: Create a unified preprocessing / loading manifest that maps anatomy consistently.
+
+Problem 3: Participant Overlap Across Digits and Hands
+  - Participant IDs (P001, etc.) appear across multiple images (Left Palm, Right Palm, and 10 Nail Bed images).
+  - Recommendation: Ensure patient-level (GroupKFold / Subject-level) data splitting to prevent severe data leakage.
+
+================================================================================
+END OF PHASE 1 AUDIT REPORT
+================================================================================
