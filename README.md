@@ -76,11 +76,13 @@ flowchart TD
 
 ### 1. dataset_cleaned.zip
 
-Collected and preprocessed by: [Shreenisha-S30](https://github.com/Shreenisha-S30)
+**Collected and preprocessed by:** [Shreenisha-S30](https://github.com/Shreenisha-S30)
 
 ### 2. Palm_preprocessed.zip
 
-Preprocessed by: [thejuthejaskg-lab](https://github.com/thejuthejaskg-lab)
+**Collected by:** [Shreenisha-S30](https://github.com/Shreenisha-S30)
+
+**Preprocessed by:** [thejuthejaskg-lab](https://github.com/thejuthejaskg-lab)
 
 Due to patient privacy considerations and repository file size limits, dataset archives and raw image directories are excluded from version control.
 
@@ -125,7 +127,7 @@ python -m pytest tests/ -v
 
 ## Contributors
 
-| GitHub account | Contribution |
+| GitHub account | Credit |
 |---|---|
 | [LikithaC17](https://github.com/LikithaC17) | Phases 3–7 |
 | [Shreenisha-S30](https://github.com/Shreenisha-S30) | Dataset collection and preprocessing |
