@@ -92,6 +92,42 @@ To configure the data locally:
 
 ---
 
+## Technical Contributions – Likitha C (@LikithaC17)
+
+The following implementation and development work was carried out by **Likitha C (@LikithaC17)** as the Lead Developer and System Architect of the project.
+
+### Machine Learning & Deep Learning Implementation
+
+- Designed and implemented handcrafted feature extraction, generating 151 image features.
+- Developed classical Machine Learning pipelines using SVM, Random Forest, Logistic Regression, KNN, and Decision Tree.
+- Implemented a Custom Convolutional Neural Network (CNN).
+- Developed the ResNet-18 deep learning and transfer learning pipeline.
+- Worked on model training, validation, checkpointing, and performance tracking.
+
+### Model Evaluation & Performance Benchmarking
+
+- Evaluated completed Machine Learning and Deep Learning models.
+- Implemented performance evaluation using appropriate classification metrics.
+- Generated model comparison reports, confusion matrices, and evaluation visualizations.
+- Conducted performance benchmarking on the test dataset (N=1,117).
+
+### Explainable Artificial Intelligence (XAI)
+
+- Integrated SHAP for feature-level explanations of supported classical ML models.
+- Implemented Grad-CAM for visual explanations of Deep Learning predictions.
+- Explored LayerCAM and Guided Backpropagation for additional visual interpretability.
+- Generated explanation visualizations to help understand model behavior.
+
+### Flask Web Application Development
+
+- Designed and developed the Flask-based web application.
+- Integrated available trained Machine Learning and Deep Learning models.
+- Implemented image upload and prediction workflows.
+- Integrated supported explainability features.
+- Developed application testing and automated testing suites.
+
+---
+
 ## Installation & Usage
 
 ### Prerequisites
