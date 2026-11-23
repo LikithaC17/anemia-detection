@@ -72,39 +72,15 @@ flowchart TD
 
 ---
 
-## Repository Structure
+## Datasets
 
-```text
-Anemia Detection/
-â”œâ”€â”€ app.py                      # Flask application main script
-â”œâ”€â”€ config.py                   # App configuration and parameters
-â”œâ”€â”€ requirements.txt            # Python dependencies
-â”œâ”€â”€ README.md                   # Documentation
-â”œâ”€â”€ LICENSE                     # MIT License
-â”œâ”€â”€ .gitignore                  # Git exclusion rules
-â”œâ”€â”€ src/
-â”‚   â”œâ”€â”€ deep_learning/          # PyTorch architectures and training code
-â”‚   â”œâ”€â”€ evaluation/             # Model evaluation utilities
-â”‚   â”œâ”€â”€ explainability/         # Grad-CAM, LayerCAM, Guided Backprop, and SHAP
-â”‚   â”œâ”€â”€ feature_extraction/     # 151-dimensional handcrafted feature extractor
-â”‚   â”œâ”€â”€ machine_learning/       # Classical ML training routines
-â”‚   â””â”€â”€ inference_service.py    # Runtime inference and XAI generation service
-â”œâ”€â”€ models/
-â”‚   â”œâ”€â”€ classical_ml/           # Serialized scikit-learn models (.joblib)
-â”‚   â””â”€â”€ deep_learning/          # Custom CNN PyTorch checkpoint
-â”œâ”€â”€ templates/                  # Jinja2 templates (dashboard, prediction, XAI, etc.)
-â”œâ”€â”€ static/                     # CSS, client JavaScript, static charts
-â”œâ”€â”€ tests/                      # Pytest automated test cases (37 tests)
-â””â”€â”€ results/                    # Phase outputs, metrics, and high-resolution graphs
-```
+### 1. dataset_cleaned.zip
 
----
+Collected and preprocessed by: [Shreenisha-S30](https://github.com/Shreenisha-S30)
 
-## Dataset Setup
+### 2. Palm_preprocessed.zip
 
-The underlying datasets comprise multi-modal clinical images:
-- `dataset_cleaned.zip` (Eye Conjunctiva and Nail Beds)
-- `Palm_preprocessed.zip` (Palmar Pallor)
+Preprocessed by: [thejuthejaskg-lab](https://github.com/thejuthejaskg-lab)
 
 Due to patient privacy considerations and repository file size limits, dataset archives and raw image directories are excluded from version control.
 
@@ -149,15 +125,15 @@ python -m pytest tests/ -v
 
 ## Contributors
 
-| Contributor | GitHub Profile | Primary Contributions |
-|---|---|---|
-| **Likitha C** | [@LikithaC17](https://github.com/LikithaC17) | **Lead Developer & System Architect**<br/>- End-to-end design and execution of Phases 3-7.<br/>- Handcrafted feature extraction (151 features) & classical ML pipelines.<br/>- Deep learning modeling (Custom CNN & ResNet-18).<br/>- Model evaluation and performance benchmarking ($N=1,117$).<br/>- Explainable AI implementation (SHAP, Grad-CAM, LayerCAM, Guided Backprop).<br/>- Flask web application development and automated testing suites. |
-| **Shreenisha S** | [@Shreenisha-S30](https://github.com/Shreenisha-S30) | **Dataset Contributor**<br/>- Contributed `dataset_cleaned.zip` image collection. |
-| **Thejas K G** | [@thejuthejaskg-lab](https://github.com/thejuthejaskg-lab) | **Dataset Contributor**<br/>- Contributed `Palm_preprocessed.zip` image collection. |
+| GitHub account | Contribution |
+|---|---|
+| [LikithaC17](https://github.com/LikithaC17) | Phases 3–7 |
+| [Shreenisha-S30](https://github.com/Shreenisha-S30) | Dataset collection and preprocessing |
+| [thejuthejaskg-lab](https://github.com/thejuthejaskg-lab) | Dataset preprocessing |
+| [SrivatsaKulkarni1](https://github.com/SrivatsaKulkarni1) | |
 
 ---
 
 ## License
 
 This project is open-source under the [MIT License](LICENSE).
-
